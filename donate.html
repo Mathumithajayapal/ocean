@@ -46,31 +46,31 @@
             --tag-text: #006994;
         }
 
-        /* ── DARK MODE ── */
+        /* ── DARK MODE (fixed visibility) ── */
         .dark {
-            --bg-body: #000000;
-            --text-body: #eaf2f7;
-            --header-bg: rgba(0, 0, 0, 0.92);
-            --header-shadow: 0 4px 14px rgba(0, 0, 0, 0.7);
-            --border-light: #1f313a;
-            --card-bg: #181e24;
+            --bg-body: #0b1217;
+            --text-body: #e6f0f7;
+            --header-bg: rgba(10, 20, 28, 0.94);
+            --header-shadow: 0 4px 14px rgba(0, 0, 0, 0.8);
+            --border-light: #1f3340;
+            --card-bg: #141e26;
             --footer-border: #1b2a33;
-            --text-muted: #aac7db;
-            --pool-primary: #3a9bc7;
+            --text-muted: #b6d4e8;
+            --pool-primary: #48b0d9;
             --pool-dark: #1f7fa8;
-            --pool-accent: #6fb9db;
-            --pool-light-bg: #0b141a;
-            --dropdown-bg: #181e24;
-            --dropdown-border: #293c48;
-            --hover-bg: rgba(58, 155, 199, 0.18);
+            --pool-accent: #6fc8ff;
+            --pool-light-bg: #0f1c24;
+            --dropdown-bg: #1b2832;
+            --dropdown-border: #2c4352;
+            --hover-bg: rgba(58, 155, 199, 0.2);
             --btn-gradient-start: #1f7fa8;
-            --btn-gradient-end: #3a9bc7;
-            --logo-gradient-start: #3a9bc7;
+            --btn-gradient-end: #48b0d9;
+            --logo-gradient-start: #48b0d9;
             --logo-gradient-end: #1f7fa8;
-            --section-alt-bg: #0b1116;
-            --hero-overlay: rgba(0, 0, 0, 0.60);
-            --tag-bg: #1f313a;
-            --tag-text: #6fb9db;
+            --section-alt-bg: #0e1a22;
+            --hero-overlay: rgba(0, 0, 0, 0.70);
+            --tag-bg: #1f3340;
+            --tag-text: #6fc8ff;
         }
 
         body {
@@ -83,7 +83,7 @@
             transition: background-color 0.25s ease, color 0.25s ease;
         }
 
-        /* ── HEADER (exact copy from index.html) ── */
+        /* ── HEADER ── */
         .site-header {
             position: sticky;
             top: 0;
@@ -273,7 +273,7 @@
             color: var(--text-body);
         }
 
-        /* Mobile overlay & menu (exact copy from index.html) */
+        /* Mobile overlay & menu */
         .mobile-overlay {
             position: fixed;
             inset: 0;
@@ -303,7 +303,7 @@
             transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
         .dark .mobile-nav-menu {
-            background-color: #141a20;
+            background-color: #141e26;
             border-left-color: var(--pool-accent);
         }
         html:not([dir="rtl"]) .mobile-nav-menu {
@@ -349,7 +349,7 @@
             overflow: hidden;
             isolation: isolate;
             background: #001a2b;
-            background-image: url('image/ocean animal (8).jpg');
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBkPSJNMjAgMzBhMTAgMTAgMCAwIDEgMC0yMCAxMCAxMCAwIDAgMSAwIDIweiIgZmlsbD0iIzAwNjU4MCIgb3BhY2l0eT0iMC4yIi8+PC9zdmc+');
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
@@ -412,7 +412,7 @@
             margin-bottom: 1.2rem;
             text-shadow: 0 4px 40px rgba(0, 0, 0, 0.4);
             letter-spacing: -0.5px;
-            color: #00A8CC;
+            color: #b0e4ff;
         }
 
         .hero-content h1 .highlight {
@@ -635,6 +635,7 @@
             font-family: 'Playfair Display', serif;
             font-size: 1.4rem;
             margin-bottom: 0.5rem;
+            color: var(--text-body);
         }
         .impact-item p {
             color: var(--text-muted);
@@ -685,8 +686,8 @@
             margin-bottom: 2rem;
         }
         .dark .donate-container {
-            background: #181e24;
-            border-color: #1f313a;
+            background: #141e26;
+            border-color: #1f3340;
             box-shadow: 0 20px 30px rgba(0, 0, 0, 0.6);
         }
         .donate-container h2 {
@@ -858,114 +859,201 @@
             font-size: 0.85rem;
         }
 
-        /* ── RESPONSIVE ── */
-        @media (max-width: 1280px) {
-            .desktop-nav {
-                display: none;
-            }
-            .hamburger {
-                display: flex;
-            }
-            .action-group .icon-btn,
-            .action-group .rtl-btn,
-            .action-group .login-btn-header {
-                display: none;
-            }
+        /* ── DONATION FORM (enhanced, no dropdowns, dark fix) ── */
+        .donation-form {
+            max-width: 850px;
+            width: 100%;
+            margin: 2rem auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border-light);
+            transition: background 0.2s, border 0.2s;
         }
-        @media (min-width: 1281px) {
-            .mobile-nav-menu,
-            .mobile-overlay {
-                display: none;
-            }
-            .hamburger {
-                display: none;
-            }
+        .dark .donation-form {
+            background: #141e26;
+            border-color: #1f3340;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
         }
 
+        .form-section {
+            margin-bottom: 35px;
+        }
+
+        .form-section h3 {
+            margin-bottom: 20px;
+            color: var(--pool-primary);
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-body);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 15px;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            font-size: 15px;
+            background: var(--bg-body);
+            color: var(--text-body);
+            transition: .3s;
+        }
+        .dark .form-group input,
+        .dark .form-group select,
+        .dark .form-group textarea {
+            background: #0b141a;
+            border-color: #2c4352;
+            color: #e6f0f7;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--pool-primary);
+            box-shadow: 0 0 0 4px rgba(0, 105, 148, 0.15);
+        }
+
+        .donation-buttons {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+        }
+
+        .donation-buttons button {
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: var(--pool-light-bg);
+            color: var(--pool-primary);
+            font-weight: 700;
+            cursor: pointer;
+            transition: .3s;
+            border: 1px solid transparent;
+        }
+        .dark .donation-buttons button {
+            background: #1f3340;
+            color: #b6d4e8;
+        }
+        .donation-buttons button:hover {
+            background: var(--pool-primary);
+            color: #fff;
+        }
+
+        .payment-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .payment-card {
+            border: 2px solid var(--border-light);
+            padding: 18px;
+            border-radius: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            transition: .3s;
+            color: var(--text-body);
+            background: var(--bg-body);
+        }
+        .dark .payment-card {
+            background: #0b141a;
+            border-color: #2c4352;
+        }
+        .payment-card:hover {
+            border-color: var(--pool-primary);
+            background: var(--hover-bg);
+        }
+
+        .checkbox {
+            display: block;
+            margin: 15px 0;
+            color: var(--text-body);
+        }
+        .checkbox input {
+            margin-right: 10px;
+        }
+
+        .donate-btn {
+            width: 100%;
+            padding: 18px;
+            border: none;
+            border-radius: 15px;
+            background: linear-gradient(105deg, var(--btn-gradient-start), var(--btn-gradient-end));
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .3s;
+        }
+        .donate-btn:hover {
+            filter: brightness(0.96);
+            transform: translateY(-2px);
+        }
+
+        .mt-4 { margin-top: 1.5rem; }
+
+        /* ── TABLET & RESPONSIVE TWEAKS ── */
         @media (max-width: 1024px) {
-            .hero-banner {
-                background-attachment: scroll;
-            }
+            .hero-content h1 { font-size: 3.4rem; }
+            .donation-form { padding: 30px; }
+            .grid-2 { gap: 16px; }
+            .donation-buttons { grid-template-columns: repeat(3, 1fr); }
         }
 
         @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.6rem;
-            }
-            .hero-content p {
-                font-size: 1rem;
-            }
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            .hero-btn-primary,
-            .hero-btn-secondary {
-                width: 100%;
-                justify-content: center;
-            }
-            .donate-container {
-                padding: 1.8rem 1.2rem;
-            }
-            .donate-container .amount-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 0.5rem;
-            }
-            .section-title {
-                font-size: 1.8rem;
-            }
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .impact-grid {
-                grid-template-columns: 1fr;
-            }
-            .scroll-indicator {
-                bottom: 1.5rem;
-            }
-            .hero-banner {
-                background-attachment: scroll;
-                min-height: 90vh;
-                padding: 5rem 1rem 3rem;
-            }
-        }
-        @media (max-width: 480px) {
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-            .hero-content p {
-                font-size: 0.95rem;
-            }
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 0.75rem;
-            }
-            .stat-card {
-                padding: 1.2rem 0.5rem;
-            }
-            .stat-card .number {
-                font-size: 1.6rem;
-            }
-            .donate-container .amount-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .hero-banner {
-                background-attachment: scroll;
-                min-height: 85vh;
-            }
+            .grid-2 { grid-template-columns: 1fr; }
+            .donation-buttons { grid-template-columns: repeat(2, 1fr); }
+            .payment-options { grid-template-columns: 1fr; }
+            .donation-form { padding: 25px; }
+            .hero-content h1 { font-size: 2.6rem; }
+            .hero-banner { background-attachment: scroll; }
         }
 
-        button {
-            background: none;
-            border: none;
-            cursor: pointer;
+        @media (max-width: 480px) {
+            .hero-content h1 { font-size: 2rem; }
+            .donate-container .amount-grid { grid-template-columns: repeat(2, 1fr); }
+            .donation-buttons { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .impact-grid { grid-template-columns: 1fr; }
         }
-        .mt-2 {
-            margin-top: 2rem;
+
+        @media (max-width: 1280px) {
+            .desktop-nav { display: none; }
+            .hamburger { display: flex; }
+            .action-group .icon-btn,
+            .action-group .rtl-btn,
+            .action-group .login-btn-header { display: none; }
         }
-        .mb-2 {
-            margin-bottom: 2rem;
+        @media (min-width: 1281px) {
+            .mobile-nav-menu,
+            .mobile-overlay { display: none; }
+            .hamburger { display: none; }
         }
+
+        button { background: none; border: none; cursor: pointer; }
         .nav-link.active {
             background-color: var(--pool-primary);
             color: #ffffff;
@@ -979,17 +1067,15 @@
             color: #fff;
             border-color: var(--pool-primary);
         }
-        .mobile-link.active i {
-            color: #fff;
-        }
+        .mobile-link.active i { color: #fff; }
     </style>
 </head>
 
 <body>
-    <!-- ─── HEADER (exact copy from index.html) ─── -->
+    <!-- ─── HEADER ─── -->
     <header class="site-header">
         <div class="nav-container">
-            <a href="index.html" class="logo"><span class="logo-text">Oceanix</span></a>
+            <a href="#" class="logo"><span class="logo-text">Oceanix</span></a>
 
             <div class="desktop-nav">
                 <div class="dropdown">
@@ -1006,7 +1092,7 @@
                 <a href="blog.html" class="nav-link">Blog</a>
                 <a href="donate.html" class="nav-link active">Donate</a>
                 <a href="faq.html" class="nav-link">FAQ</a>
-                <a href="contact.html" class="nav-link">contact</a>
+                <a href="contact.html" class="nav-link">Contact</a>
                 <div class="dropdown">
                     <a href="#" class="nav-link">Dashboard <i class="fas fa-caret-down"></i></a>
                     <div class="dropdown-menu">
@@ -1027,20 +1113,21 @@
         </div>
     </header>
 
-    <!-- ─── MOBILE OVERLAY & MENU (exact copy from index.html) ─── -->
+    <!-- ─── MOBILE OVERLAY & MENU ─── -->
     <div id="mobileOverlay" class="mobile-overlay"></div>
     <div id="mobileNavMenu" class="mobile-nav-menu">
         <ul style="list-style: none;">
             <li><a href="index.html" class="mobile-link">Home1</a></li>
             <li><a href="homepage2.html" class="mobile-link">Home 2</a></li>
             <li><a href="about.html" class="mobile-link">About</a></li>
-            <li><a href="service.html" class="mobile-link">service</a></li>
+            <li><a href="service.html" class="mobile-link">Service</a></li>
             <li><a href="blog.html" class="mobile-link">Blog</a></li>
             <li><a href="donate.html" class="mobile-link active">Donate</a></li>
             <li><a href="faq.html" class="mobile-link">FAQ</a></li>
             <li><a href="contact.html" class="mobile-link">Contact</a></li>
             <li><a href="#" class="mobile-link">Dashboard</a>
-                    <li><a href="user.html" class="mobile-link" >User</a></li>
+                <ul style="padding-left: 1.5rem; list-style: none;">
+                    <li><a href="user.html" class="mobile-link" style="margin-top: 0.5rem;">User</a></li>
                     <li><a href="admin.html" class="mobile-link">Admin</a></li>
                 </ul>
             </li>
@@ -1142,6 +1229,123 @@
             </div>
         </section>
 
+        <!-- DONATION FORM (no dropdowns, dark mode text visible) -->
+        <form class="donation-form">
+            <!-- Personal Information -->
+            <div class="form-section">
+                <h3><i class="fas fa-user"></i> Personal Information</h3>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>First Name *</label>
+                        <input type="text" placeholder="John" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name *</label>
+                        <input type="text" placeholder="Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" placeholder="john@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number *</label>
+                        <input type="tel" placeholder="+91 9876543210" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Address -->
+            <div class="form-section">
+                <h3><i class="fas fa-map-marker-alt"></i> Address</h3>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Country *</label>
+                        <input type="text" placeholder="India" required>
+                    </div>
+                    <div class="form-group">
+                        <label>State *</label>
+                        <input type="text" placeholder="Tamil Nadu" required>
+                    </div>
+                    <div class="form-group">
+                        <label>City *</label>
+                        <input type="text" placeholder="Chennai" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Pincode *</label>
+                        <input type="text" placeholder="600001" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Donation -->
+            <div class="form-section">
+                <h3><i class="fas fa-hand-holding-heart"></i> Donation Details</h3>
+                <div class="donation-buttons">
+                    <button type="button">₹500</button>
+                    <button type="button">₹1000</button>
+                    <button type="button">₹2500</button>
+                    <button type="button">₹5000</button>
+                    <button type="button">₹10000</button>
+                </div>
+                <div class="form-group mt-4">
+                    <label>Custom Amount (₹)</label>
+                    <input type="number" placeholder="Enter Amount">
+                </div>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Donation Type</label>
+                        <input type="text" placeholder="One-Time Donation">
+                    </div>
+                    <div class="form-group">
+                        <label>Purpose</label>
+                        <input type="text" placeholder="Ocean Cleanup">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment -->
+            <div class="form-section">
+                <h3><i class="fas fa-credit-card"></i> Payment Method</h3>
+                <div class="payment-options">
+                    <label class="payment-card">
+                        <input type="radio" name="payment">
+                        <i class="fas fa-credit-card"></i> Credit / Debit Card
+                    </label>
+                    <label class="payment-card">
+                        <input type="radio" name="payment">
+                        <i class="fab fa-google-pay"></i> Google Pay
+                    </label>
+                    <label class="payment-card">
+                        <input type="radio" name="payment">
+                        <i class="fas fa-mobile-alt"></i> UPI
+                    </label>
+                    <label class="payment-card">
+                        <input type="radio" name="payment">
+                        <i class="fab fa-paypal"></i> PayPal
+                    </label>
+                </div>
+            </div>
+
+            <!-- Additional -->
+            <div class="form-section">
+                <h3><i class="fas fa-comment"></i> Additional Information</h3>
+                <div class="form-group">
+                    <label>Message (Optional)</label>
+                    <textarea rows="4" placeholder="Leave a message..."></textarea>
+                </div>
+                <label class="checkbox">
+                    <input type="checkbox"> Donate anonymously
+                </label>
+                <label class="checkbox">
+                    <input type="checkbox"> I agree to the Terms &amp; Conditions
+                </label>
+            </div>
+
+            <button class="donate-btn">
+                <i class="fas fa-heart"></i> Donate Securely
+            </button>
+        </form>
+
         <!-- Testimonial -->
         <section class="section-block" style="max-width: 800px;">
             <div class="testimonial-box">
@@ -1207,7 +1411,6 @@
             const rtlSpan = document.getElementById('rtlButtonText');
             const mobileRtlSpan = document.getElementById('mobileRtlButtonText');
 
-            // ── mobile menu ──
             function closeMenu() {
                 if (!mobileMenu) return;
                 mobileMenu.classList.remove('open');
@@ -1232,7 +1435,6 @@
             if (hamburger) hamburger.addEventListener('click', toggleMenu);
             if (overlay) overlay.addEventListener('click', closeMenu);
 
-            // ── dark mode ──
             function setTheme(isDark) {
                 if (isDark) {
                     htmlEl.classList.add('dark');
@@ -1269,7 +1471,6 @@
             if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', () => { toggleTheme();
                 refreshMobileThemeBtn(); });
 
-            // ── RTL ──
             function setDirection(isRtl) {
                 if (isRtl) {
                     htmlEl.setAttribute('dir', 'rtl');
@@ -1292,7 +1493,6 @@
             if (rtlToggle) rtlToggle.addEventListener('click', toggleRTL);
             if (mobileRtlToggle) mobileRtlToggle.addEventListener('click', toggleRTL);
 
-            // ── init from storage ──
             const savedTheme = localStorage.getItem('oceanixTheme');
             if (savedTheme === 'dark') setTheme(true);
             else setTheme(false);
@@ -1310,7 +1510,7 @@
                 if (window.innerWidth >= 1280) closeMenu();
             });
 
-            // ── donate interactivity ──
+            // donate interactivity
             const amountBtns = document.querySelectorAll('.amount-btn');
             const customInput = document.getElementById('customAmount');
             const donateBtn = document.getElementById('donateNowBtn');
@@ -1350,7 +1550,6 @@
                 alert(`Thank you for your generous donation of $${amount.toFixed(2)}!\nTogether we protect our blue planet. 🌊`);
             });
 
-            // ── smooth scroll for hero CTAs ──
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     const target = document.querySelector(this.getAttribute('href'));
