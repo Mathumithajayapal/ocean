@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Oceanix · Sign In</title>
+
+    <!-- Google Fonts + Font Awesome 6 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ---------- RESET & BASE ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-body: #ffffff;
+            --text-body: #0a2e3f;
+            --border-light: #c7e2ed;
+            --card-bg: #ffffff;
+            --footer-border: #b8d8e8;
+            --text-muted: #1a5a73;
+            --pool-primary: #006994;
+            --pool-dark: #004d73;
+            --pool-accent: #3a9bc7;
+            --pool-light-bg: #e2f0f7;
+            --hover-bg: rgba(0, 105, 148, 0.10);
+            --btn-gradient-start: #006994;
+            --btn-gradient-end: #004d73;
+            --logo-gradient-start: #006994;
+            --logo-gradient-end: #004d73;
+            --input-border: #c7e2ed;
+            --input-focus: #006994;
+            --input-bg: #f9fcfe;
+            --toggle-bg: #e8f0f5;
+            --toggle-color: #0a2e3f;
+            --shadow-card: 0 24px 48px rgba(0, 0, 0, 0.08);
+            --link-color: #006994;
+            --eye-color: #6a8f9f;
+        }
+
+        .dark {
+            --bg-body: #000000;
+            --text-body: #eaf2f7;
+            --border-light: #1f313a;
+            --card-bg: #000000;
+            --footer-border: #1b2a33;
+            --text-muted: #aac7db;
+            --pool-primary: #3a9bc7;
+            --pool-dark: #1f7fa8;
+            --pool-accent: #6fb9db;
+            --pool-light-bg: #0b141a;
+            --hover-bg: rgba(58, 155, 199, 0.18);
+            --btn-gradient-start: #1f7fa8;
+            --btn-gradient-end: #3a9bc7;
+            --logo-gradient-start: #3a9bc7;
+            --logo-gradient-end: #1f7fa8;
+            --input-border: #2a3f4a;
+            --input-focus: #3a9bc7;
+            --input-bg: #11181e;
+            --toggle-bg: #1a2a33;
+            --toggle-color: #eaf2f7;
+            --shadow-card: 0 24px 48px rgba(0, 0, 0, 0.7);
+            --link-color: #3a9bc7;
+            --eye-color: #8ab3c9;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-body);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background-color 0.25s ease, color 0.25s ease;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* ---------- MAIN SIGNIN (full page) ---------- */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.2rem;
+            background: radial-gradient(circle at 10% 30%, rgba(0, 105, 148, 0.05), transparent);
+            min-height: 0;
+            height: 100vh;
+            position: relative;
+        }
+
+        .dark .main-content {
+            background: radial-gradient(circle at 10% 30%, rgba(0, 105, 148, 0.12), #000000);
+        }
+
+        /* ---------- FLOATING CONTROLS (outside card, top-right) ---------- */
+        .floating-controls {
+            position: absolute;
+            top: 0.9rem;
+            right: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            z-index: 10;
+            background: var(--card-bg);
+            padding: 0.25rem 0.45rem;
+            border-radius: 9999px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            transition: background 0.25s, border 0.25s, box-shadow 0.25s;
+        }
+
+        .dark .floating-controls {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        .floating-controls .icon-btn {
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--toggle-color);
+            transition: all 0.2s;
+        }
+
+        .floating-controls .icon-btn:hover {
+            background-color: var(--hover-bg);
+            color: var(--pool-primary);
+            border-color: var(--pool-primary);
+        }
+
+        .floating-controls .rtl-btn-sm {
+            padding: 0 0.7rem;
+            height: 2rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.7rem;
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--toggle-color);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .floating-controls .rtl-btn-sm:hover {
+            background-color: var(--hover-bg);
+            color: var(--pool-primary);
+            border-color: var(--pool-primary);
+        }
+
+        /* ---------- CARD — SPACIOUS, NO SCROLL ---------- */
+        .signin-card {
+            background: var(--card-bg);
+            border-radius: 2rem;
+            padding: 2.2rem 2.6rem 2rem;
+            max-width: 440px;
+            width: 100%;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-card);
+            transition: background 0.25s, border 0.25s, box-shadow 0.25s;
+            position: relative;
+            max-height: calc(100vh - 3rem);
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* ---------- CARD HEADER with Logo (centered) ---------- */
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.15rem;
+        }
+
+        .card-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .card-logo .logo-icon {
+            font-size: 24px;
+            color: var(--pool-primary);
+            transition: transform 0.2s ease;
+        }
+
+        .card-logo:hover .logo-icon {
+            transform: scale(0.97);
+            color: var(--pool-dark);
+        }
+
+        .card-logo .logo-text {
+            font-size: 24px;
+            font-weight: 800;
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, var(--logo-gradient-start), var(--logo-gradient-end));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+        }
+
+        /* ---------- CARD BODY (centered) ---------- */
+        .brand-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            background: var(--hover-bg);
+            padding: 0.15rem 0.8rem;
+            border-radius: 60px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: var(--pool-primary);
+            border: 1px solid var(--border-light);
+            margin-bottom: 0.3rem;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+        }
+        .brand-badge i {
+            font-size: 0.55rem;
+        }
+
+        .signin-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-body);
+            margin-bottom: 0.1rem;
+            line-height: 1.2;
+            text-align: center;
+        }
+
+        .signin-card .sub {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-bottom: 0.9rem;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        /* ---------- FORM (left-aligned inside card for readability) ---------- */
+        .form-group {
+            margin-bottom: 0.8rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.75rem;
+            margin-bottom: 0.2rem;
+            color: var(--text-body);
+            letter-spacing: 0.2px;
+        }
+
+        .form-group .input-wrap {
+            display: flex;
+            align-items: center;
+            background: var(--input-bg);
+            border: 1.5px solid var(--input-border);
+            border-radius: 0.8rem;
+            padding: 0 0.8rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            min-height: 2.7rem;
+        }
+
+        .form-group .input-wrap:focus-within {
+            border-color: var(--input-focus);
+            box-shadow: 0 0 0 4px rgba(0, 105, 148, 0.10);
+        }
+
+        .dark .form-group .input-wrap:focus-within {
+            box-shadow: 0 0 0 4px rgba(58, 155, 199, 0.14);
+        }
+
+        .form-group .input-wrap i:not(.eye-icon) {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            width: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .form-group .input-wrap input {
+            width: 100%;
+            padding: 0.5rem 0.3rem;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            color: var(--text-body);
+        }
+
+        .form-group .input-wrap input::placeholder {
+            color: var(--text-muted);
+            opacity: 0.5;
+            font-size: 0.75rem;
+        }
+
+        /* ---- Eye icon button ---- */
+        .eye-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.2rem 0.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--eye-color);
+            font-size: 0.9rem;
+            transition: color 0.2s, transform 0.15s;
+            flex-shrink: 0;
+            border-radius: 6px;
+            width: 1.8rem;
+            height: 1.8rem;
+        }
+
+        .eye-btn:hover {
+            color: var(--pool-primary);
+            background: var(--hover-bg);
+        }
+
+        .eye-btn:active {
+            transform: scale(0.92);
+        }
+
+        .eye-btn i {
+            font-size: 0.9rem;
+            pointer-events: none;
+        }
+
+        /* ---------- REMEMBER & FORGOT ROW ---------- */
+        .form-actions-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 0.1rem;
+            margin-bottom: 0.6rem;
+            gap: 0.5rem;
+        }
+
+        .form-group.checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-align: left;
+            margin: 0;
+        }
+
+        .form-group.checkbox input[type="checkbox"] {
+            width: 1rem;
+            height: 1rem;
+            accent-color: var(--pool-primary);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .form-group.checkbox label {
+            font-weight: 400;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .forgot-link {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--link-color);
+            text-decoration: none;
+            transition: color 0.2s;
+            white-space: nowrap;
+        }
+
+        .forgot-link:hover {
+            text-decoration: underline;
+            color: var(--pool-dark);
+        }
+
+        .dark .forgot-link:hover {
+            color: var(--pool-accent);
+        }
+
+        .btn-primary {
+            width: 100%;
+            background: linear-gradient(105deg, var(--btn-gradient-start), var(--btn-gradient-end));
+            border: none;
+            padding: 0.65rem 1.2rem;
+            border-radius: 2.2rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+            box-shadow: 0 4px 14px rgba(0, 105, 148, 0.28);
+            font-size: 0.88rem;
+            cursor: pointer;
+            margin-top: 0.15rem;
+            letter-spacing: 0.2px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            filter: brightness(0.96);
+            box-shadow: 0 6px 20px rgba(0, 105, 148, 0.38);
+        }
+
+        .btn-primary i {
+            font-size: 0.8rem;
+        }
+
+        .signin-footer {
+            text-align: center;
+            margin-top: 0.7rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .signin-footer a {
+            color: var(--link-color);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .signin-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin: 0.7rem 0 0.6rem;
+            color: var(--text-muted);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-light);
+        }
+
+        .social-row {
+            display: flex;
+            gap: 0.7rem;
+            justify-content: center;
+        }
+
+        .social-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.45rem 0;
+            border-radius: 1.8rem;
+            border: 1.5px solid var(--border-light);
+            background: transparent;
+            color: var(--text-body);
+            font-weight: 600;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .social-btn:hover {
+            background: var(--hover-bg);
+            border-color: var(--pool-primary);
+        }
+
+        .social-btn i {
+            font-size: 0.95rem;
+            color: var(--pool-primary);
+        }
+
+        /* ---------- FOOTER (compact) ---------- */
+        .footer {
+            background-color: var(--bg-body);
+            border-top: 1px solid var(--footer-border);
+            padding: 0.6rem 1rem 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .footer-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+        }
+
+        .footer-inner .copy {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+        }
+
+        .footer-inner .footer-links {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-inner .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.65rem;
+            transition: color 0.2s;
+        }
+
+        .footer-inner .footer-links a:hover {
+            color: var(--pool-primary);
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 640px) {
+            .signin-card {
+                padding: 1.6rem 1.8rem 1.4rem;
+                max-width: 400px;
+                border-radius: 1.6rem;
+                max-height: calc(100vh - 2.4rem);
+            }
+
+            .signin-card h2 {
+                font-size: 1.3rem;
+            }
+
+            .social-row {
+                flex-direction: column;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .card-header {
+                flex-wrap: wrap;
+                gap: 0.2rem;
+            }
+
+            .card-logo .logo-text {
+                font-size: 20px;
+            }
+            .card-logo .logo-icon {
+                font-size: 20px;
+            }
+
+            .floating-controls {
+                top: 0.5rem;
+                right: 0.5rem;
+                padding: 0.2rem 0.35rem;
+            }
+
+            .floating-controls .icon-btn {
+                width: 1.7rem;
+                height: 1.7rem;
+                font-size: 0.75rem;
+            }
+
+            .floating-controls .rtl-btn-sm {
+                height: 1.7rem;
+                padding: 0 0.5rem;
+                font-size: 0.6rem;
+            }
+
+            .brand-badge {
+                font-size: 0.5rem;
+                padding: 0.05rem 0.5rem;
+            }
+            .signin-card .sub {
+                font-size: 0.7rem;
+                margin-bottom: 0.6rem;
+            }
+            .form-group {
+                margin-bottom: 0.6rem;
+            }
+            .form-group .input-wrap {
+                min-height: 2.4rem;
+                padding: 0 0.6rem;
+                border-radius: 0.6rem;
+            }
+            .form-group .input-wrap input {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.2rem;
+            }
+            .form-group .input-wrap i:not(.eye-icon) {
+                font-size: 0.75rem;
+                width: 1.2rem;
+            }
+            .btn-primary {
+                font-size: 0.8rem;
+                padding: 0.5rem 0.8rem;
+            }
+            .social-btn {
+                font-size: 0.68rem;
+                padding: 0.35rem 0;
+            }
+            .signin-footer {
+                font-size: 0.68rem;
+                margin-top: 0.5rem;
+            }
+            .divider {
+                font-size: 0.55rem;
+                margin: 0.5rem 0 0.4rem;
+            }
+            .footer-inner .copy {
+                font-size: 0.55rem;
+            }
+            .footer-inner .footer-links a {
+                font-size: 0.55rem;
+            }
+            .form-actions-row {
+                flex-wrap: wrap;
+                gap: 0.3rem;
+            }
+            .forgot-link {
+                font-size: 0.65rem;
+            }
+            .form-group.checkbox label {
+                font-size: 0.65rem;
+            }
+            .eye-btn {
+                font-size: 0.8rem;
+                width: 1.6rem;
+                height: 1.6rem;
+            }
+            .eye-btn i {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .signin-card {
+                padding: 1.2rem 1.2rem 1rem;
+                max-width: 340px;
+                border-radius: 1.2rem;
+                max-height: calc(100vh - 2rem);
+            }
+
+            .card-logo .logo-text {
+                font-size: 17px;
+            }
+            .card-logo .logo-icon {
+                font-size: 17px;
+            }
+
+            .signin-card h2 {
+                font-size: 1.1rem;
+            }
+
+            .floating-controls {
+                top: 0.35rem;
+                right: 0.35rem;
+                padding: 0.15rem 0.25rem;
+            }
+
+            .floating-controls .icon-btn {
+                width: 1.5rem;
+                height: 1.5rem;
+                font-size: 0.65rem;
+            }
+
+            .floating-controls .rtl-btn-sm {
+                height: 1.5rem;
+                padding: 0 0.35rem;
+                font-size: 0.5rem;
+            }
+
+            .form-group .input-wrap input {
+                font-size: 0.75rem;
+                padding: 0.3rem 0.15rem;
+            }
+            .form-group .input-wrap {
+                min-height: 2.1rem;
+                padding: 0 0.5rem;
+                border-radius: 0.5rem;
+            }
+            .form-group .input-wrap i:not(.eye-icon) {
+                font-size: 0.7rem;
+                width: 1rem;
+            }
+            .btn-primary {
+                font-size: 0.7rem;
+                padding: 0.4rem 0.6rem;
+            }
+            .social-btn {
+                font-size: 0.6rem;
+                padding: 0.28rem 0;
+            }
+            .signin-footer {
+                font-size: 0.6rem;
+            }
+            .divider {
+                font-size: 0.5rem;
+                margin: 0.4rem 0 0.3rem;
+            }
+            .footer-inner .copy {
+                font-size: 0.5rem;
+            }
+            .footer-inner .footer-links a {
+                font-size: 0.5rem;
+            }
+            .form-group.checkbox label {
+                font-size: 0.6rem;
+            }
+            .form-group label {
+                font-size: 0.65rem;
+            }
+            .signin-card .sub {
+                font-size: 0.6rem;
+            }
+            .forgot-link {
+                font-size: 0.6rem;
+            }
+            .form-actions-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .eye-btn {
+                font-size: 0.7rem;
+                width: 1.4rem;
+                height: 1.4rem;
+            }
+            .eye-btn i {
+                font-size: 0.7rem;
+            }
+        }
+
+        /* ---------- HIDE UNUSED ---------- */
+        .hamburger,
+        .mobile-overlay,
+        .mobile-nav-menu {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== MAIN SIGNIN ===== -->
+    <main class="main-content">
+
+        <!-- Floating Controls: outside card, top-right corner -->
+        <div class="floating-controls">
+            <button id="themeToggle" class="icon-btn" aria-label="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button id="rtlToggle" class="rtl-btn-sm">
+                <span id="rtlButtonText">RTL</span>
+            </button>
+        </div>
+
+        <div class="signin-card">
+
+            <!-- Card Header: Logo (centered) -->
+            <div class="card-header">
+                <a href="index.html" class="card-logo">
+                    <span class="logo-text">Oceanix</span>
+                </a>
+            </div>
+
+            <!-- Heading (centered) -->
+            <h2>Welcome Back</h2>
+            <p class="sub">Sign in to continue protecting our oceans</p>
+
+            <form id="signinForm" autocomplete="off" novalidate>
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-wrap">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" placeholder="you@oceanix.org" required />
+                    </div>
+                </div>
+
+                <!-- Password with eye toggle -->
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrap">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" placeholder="••••••••" required />
+                        <button type="button" class="eye-btn" data-target="password" aria-label="Toggle password visibility">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Remember & Forgot Password -->
+                <div class="form-actions-row">
+                    <div class="form-group checkbox">
+                        <input type="checkbox" id="remember" />
+                        <label for="remember">Remember me</label>
+                    </div>
+                    <a href="#" class="forgot-link">Forgot password?</a>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="btn-primary">
+                    <i class="fas fa-sign-in-alt"></i> Sign In
+                </button>
+            </form>
+
+            <!-- Divider -->
+            <div class="divider">or continue with</div>
+
+            <!-- Social -->
+            <div class="social-row">
+                <button class="social-btn" type="button"><i class="fab fa-google"></i> Google</button>
+                <button class="social-btn" type="button"><i class="fab fa-apple"></i> Apple</button>
+            </div>
+
+            <!-- Footer link -->
+            <div class="signin-footer">
+                Don't have an account? <a href="signup.html">Sign up</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <span class="copy">© 2026 Oceanix · Marine Conservation</span>
+            <div class="footer-links">
+                <a href="#">About</a>
+                <a href="#">Projects</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            const htmlEl = document.documentElement;
+
+            // ----- THEME -----
+            const themeToggle = document.getElementById('themeToggle');
+            const rtlToggle = document.getElementById('rtlToggle');
+            const rtlSpan = document.getElementById('rtlButtonText');
+
+            function setTheme(isDark) {
+                if (isDark) {
+                    htmlEl.classList.add('dark');
+                } else {
+                    htmlEl.classList.remove('dark');
+                }
+                const icon = themeToggle?.querySelector('i');
+                if (icon) {
+                    icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+                }
+                localStorage.setItem('oceanixTheme', isDark ? 'dark' : 'light');
+            }
+
+            function toggleTheme() {
+                const isDark = !htmlEl.classList.contains('dark');
+                setTheme(isDark);
+            }
+
+            if (themeToggle) {
+                themeToggle.addEventListener('click', toggleTheme);
+            }
+
+            // Restore theme
+            const savedTheme = localStorage.getItem('oceanixTheme');
+            if (savedTheme === 'dark') {
+                setTheme(true);
+            } else {
+                setTheme(false);
+            }
+
+            // ----- RTL -----
+            function setDirection(isRtl) {
+                if (isRtl) {
+                    htmlEl.setAttribute('dir', 'rtl');
+                    if (rtlSpan) rtlSpan.textContent = 'LTR';
+                } else {
+                    htmlEl.setAttribute('dir', 'ltr');
+                    if (rtlSpan) rtlSpan.textContent = 'RTL';
+                }
+                localStorage.setItem('oceanixDirection', isRtl ? 'rtl' : 'ltr');
+            }
+
+            function toggleRTL() {
+                const isRtl = htmlEl.getAttribute('dir') === 'rtl';
+                setDirection(!isRtl);
+            }
+
+            if (rtlToggle) {
+                rtlToggle.addEventListener('click', toggleRTL);
+            }
+
+            const savedDir = localStorage.getItem('oceanixDirection');
+            if (savedDir === 'rtl') {
+                setDirection(true);
+            } else {
+                setDirection(false);
+            }
+
+            // ----- EYE ICON TOGGLE (show / hide password) -----
+            const eyeBtns = document.querySelectorAll('.eye-btn');
+
+            eyeBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('data-target');
+                    const input = document.getElementById(targetId);
+                    if (!input) return;
+
+                    const icon = this.querySelector('i');
+                    const isPassword = input.getAttribute('type') === 'password';
+
+                    if (isPassword) {
+                        input.setAttribute('type', 'text');
+                        if (icon) {
+                            icon.className = 'fas fa-eye-slash';
+                        }
+                    } else {
+                        input.setAttribute('type', 'password');
+                        if (icon) {
+                            icon.className = 'fas fa-eye';
+                        }
+                    }
+                    input.focus();
+                });
+            });
+
+            // ----- SIGNIN FORM (basic validation) -----
+            const form = document.getElementById('signinForm');
+            const email = document.getElementById('email');
+            const password = document.getElementById('password');
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(email.value.trim())) {
+                    alert('Please enter a valid email address.');
+                    email.focus();
+                    return;
+                }
+
+                if (password.value.length < 6) {
+                    alert('Password must be at least 6 characters.');
+                    password.focus();
+                    return;
+                }
+
+                alert('✅ Welcome back! You have been signed in successfully.');
+                form.reset();
+
+                // Reset eye icon to "closed" state after form reset
+                document.querySelectorAll('.eye-btn').forEach(btn => {
+                    const icon = btn.querySelector('i');
+                    if (icon) {
+                        icon.className = 'fas fa-eye';
+                    }
+                    const targetId = btn.getAttribute('data-target');
+                    const input = document.getElementById(targetId);
+                    if (input) {
+                        input.setAttribute('type', 'password');
+                    }
+                });
+            });
+
+        })();
+    </script>
+
+</body>
+</html>

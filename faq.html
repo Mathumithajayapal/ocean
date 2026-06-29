@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Oceanix · FAQ – Marine Conservation & Ocean Cleanup</title>
+
+    <!-- Google Fonts + Font Awesome 6 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ----- RESET & BASE ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ----- LIGHT MODE (Oceanic / Blue) ----- */
+        :root {
+            --bg-body: #ffffff;
+            --text-body: #0a2e3f;
+            --header-bg: rgba(255, 255, 255, 0.96);
+            --header-shadow: 0 4px 12px rgba(0, 30, 50, 0.08);
+            --border-light: #c7e2ed;
+            --card-bg: #ffffff;
+            --footer-border: #b8d8e8;
+            --text-muted: #1a5a73;
+            --pool-primary: #006994;
+            --pool-dark: #004d73;
+            --pool-accent: #3a9bc7;
+            --pool-light-bg: #e2f0f7;
+            --dropdown-bg: #ffffff;
+            --dropdown-border: #c5e0ed;
+            --hover-bg: rgba(0, 105, 148, 0.10);
+            --btn-gradient-start: #006994;
+            --btn-gradient-end: #004d73;
+            --logo-gradient-start: #006994;
+            --logo-gradient-end: #004d73;
+            --hero-gradient-start: #006994;
+            --hero-gradient-end: #3a9bc7;
+            --faq-item-bg: #f8fcff;
+            --faq-shadow: 0 8px 20px rgba(0, 40, 60, 0.04);
+            /* hero overlay – lighter for light mode */
+            --hero-overlay: rgba(0, 20, 35, 0.55);
+            --hero-text-light: #ffffff;
+            --hero-text-muted: rgba(255, 255, 255, 0.85);
+            --hero-badge-bg: rgba(255, 255, 255, 0.15);
+            --hero-badge-border: rgba(255, 255, 255, 0.25);
+        }
+
+        /* ----- DARK MODE: Deep ocean · Black + grey cards ----- */
+        .dark {
+            --bg-body: #000000;
+            --text-body: #eaf2f7;
+            --header-bg: rgba(0, 0, 0, 0.92);
+            --header-shadow: 0 4px 14px rgba(0, 0, 0, 0.7);
+            --border-light: #1f313a;
+            --card-bg: #181e24;
+            --footer-border: #1b2a33;
+            --text-muted: #aac7db;
+            --pool-primary: #3a9bc7;
+            --pool-dark: #1f7fa8;
+            --pool-accent: #6fb9db;
+            --pool-light-bg: #0b141a;
+            --dropdown-bg: #181e24;
+            --dropdown-border: #293c48;
+            --hover-bg: rgba(58, 155, 199, 0.18);
+            --btn-gradient-start: #1f7fa8;
+            --btn-gradient-end: #3a9bc7;
+            --logo-gradient-start: #3a9bc7;
+            --logo-gradient-end: #1f7fa8;
+            --hero-gradient-start: #e2f0f7;
+            --hero-gradient-end: #3a9bc7;
+            --faq-item-bg: #11181e;
+            --faq-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            /* hero overlay – darker for dark mode */
+            --hero-overlay: rgba(0, 0, 0, 0.70);
+            --hero-text-light: #ffffff;
+            --hero-text-muted: rgba(255, 255, 255, 0.80);
+            --hero-badge-bg: rgba(255, 255, 255, 0.10);
+            --hero-badge-border: rgba(255, 255, 255, 0.15);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-body);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background-color 0.25s ease, color 0.25s ease;
+        }
+
+        /* ----- HEADER & NAVBAR (unchanged) ----- */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--header-bg);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--header-shadow);
+            transition: background-color 0.2s;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 28px;
+            color: var(--pool-primary);
+            transition: transform 0.2s ease;
+        }
+
+        .logo:hover .logo-icon {
+            transform: scale(0.98);
+            color: var(--pool-dark);
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 800;
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, var(--logo-gradient-start), var(--logo-gradient-end));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.2px;
+        }
+
+        .desktop-nav {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            color: var(--text-body);
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover {
+            background-color: var(--hover-bg);
+            color: var(--pool-primary);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            padding-top: 0.5rem;
+            display: none;
+            min-width: 220px;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-inner {
+            background-color: var(--dropdown-bg);
+            border: 1px solid var(--dropdown-border);
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            padding: 0.75rem 0;
+            backdrop-filter: blur(8px);
+        }
+
+        .dropdown-inner a {
+            display: block;
+            padding: 0.6rem 1.5rem;
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--text-body);
+            transition: all 0.2s;
+        }
+
+        .dropdown-inner a:hover {
+            background-color: var(--pool-primary);
+            color: #ffffff;
+            padding-left: 2rem;
+        }
+
+        .action-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .icon-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            color: var(--text-body);
+            transition: all 0.2s;
+        }
+
+        .icon-btn:hover {
+            background-color: var(--hover-bg);
+            color: var(--pool-primary);
+        }
+
+        .rtl-btn {
+            padding: 0 1rem;
+            height: 2.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            background: transparent;
+            border: none;
+            color: var(--text-body);
+            transition: all 0.2s;
+        }
+
+        .rtl-btn:hover {
+            background-color: var(--hover-bg);
+            color: var(--pool-primary);
+        }
+
+        .login-btn-header {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            border: 2px solid var(--pool-primary);
+            color: var(--pool-primary);
+            background: transparent;
+            text-decoration: none;
+            transition: all 0.2s;
+            font-size: 0.85rem;
+        }
+
+        .login-btn-header:hover {
+            background-color: var(--pool-primary);
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 105, 148, 0.3);
+        }
+
+        .hamburger {
+            display: none;
+            width: 2.5rem;
+            height: 2.5rem;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            border: 2px solid var(--border-light);
+            background: transparent;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--text-body);
+        }
+
+        /* Mobile overlay & menu */
+        .mobile-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s;
+        }
+
+        .mobile-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav-menu {
+            position: fixed;
+            top: 0;
+            width: 80%;
+            max-width: 320px;
+            height: 100%;
+            background-color: var(--card-bg);
+            z-index: 999;
+            box-shadow: -8px 0 25px rgba(0, 0, 0, 0.5);
+            border-left: 4px solid var(--pool-primary);
+            overflow-y: auto;
+            padding: 90px 1.5rem 2rem;
+            transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        .dark .mobile-nav-menu {
+            background-color: #141a20;
+            border-left-color: var(--pool-accent);
+        }
+
+        html:not([dir="rtl"]) .mobile-nav-menu {
+            right: 0;
+            transform: translateX(100%);
+        }
+
+        html[dir="rtl"] .mobile-nav-menu {
+            left: 0;
+            transform: translateX(-100%);
+        }
+
+        .mobile-nav-menu.open {
+            transform: translateX(0) !important;
+        }
+
+        .mobile-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.8rem 1rem;
+            border-radius: 1rem;
+            border: 2px solid var(--border-light);
+            background: var(--card-bg);
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--text-body);
+            margin-bottom: 0.75rem;
+            transition: all 0.2s;
+        }
+
+        .mobile-link i {
+            width: 1.5rem;
+            color: var(--pool-primary);
+        }
+
+        .nav-link.active {
+            background-color: var(--pool-primary);
+            color: #ffffff;
+        }
+
+        .nav-link.active:hover {
+            background-color: var(--pool-dark);
+            color: #ffffff;
+        }
+
+        .mobile-link.active {
+            background: var(--pool-primary);
+            color: #fff;
+            border-color: var(--pool-primary);
+        }
+
+        .mobile-link.active i {
+            color: #fff;
+        }
+
+        /* ----- HERO BANNER — with BACKGROUND IMAGE ----- */
+        .hero-banner {
+            position: relative;
+            /* Beautiful ocean wave image from Unsplash */
+            background-image: url('image/ocean (5).jpg');
+            background-size: cover;
+            background-position: center 30%;
+            background-repeat: no-repeat;
+            border-bottom: 1px solid var(--border-light);
+            padding: 4rem 1.5rem;
+            isolation: isolate;
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Dark overlay for text readability */
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--hero-overlay);
+            /* subtle gradient overlay for depth */
+            background: linear-gradient(135deg, var(--hero-overlay) 0%, rgba(0, 10, 20, 0.65) 100%);
+            z-index: 0;
+            border-radius: inherit;
+        }
+
+        /* Ensure content sits above overlay */
+        .hero-banner .hero-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            width: 100%;
+        }
+
+        .hero-banner .hero-content {
+            flex: 1 1 300px;
+        }
+
+        /* Badge – glass-morphism style on dark bg */
+        .hero-banner .hero-content .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--hero-badge-bg);
+            backdrop-filter: blur(8px);
+            padding: 0.4rem 1.2rem;
+            border-radius: 60px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--hero-text-light);
+            border: 1px solid var(--hero-badge-border);
+            margin-bottom: 1rem;
+        }
+
+        .hero-banner .hero-content .hero-badge i {
+            color: var(--hero-text-light);
+        }
+
+        /* Heading – white with subtle glow */
+        .hero-banner .hero-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: var(--hero-text-light);
+            /* subtle text shadow for readability */
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+        }
+
+        /* Paragraph – light with good contrast */
+        .hero-banner .hero-content p {
+            color: var(--hero-text-muted);
+            font-size: 1.1rem;
+            max-width: 480px;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Buttons – keep original styling, but ensure they pop on dark bg */
+        .hero-banner .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--btn-gradient-start), var(--btn-gradient-end));
+            color: #fff;
+            font-weight: 700;
+            padding: 0.7rem 1.8rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            border: none;
+            box-shadow: 0 4px 16px rgba(0, 105, 148, 0.35);
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(0, 105, 148, 0.5);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(4px);
+            color: var(--hero-text-light);
+            font-weight: 600;
+            padding: 0.7rem 1.8rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            border: 2px solid rgba(255, 255, 255, 0.30);
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .btn-secondary:hover {
+            border-color: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.20);
+            color: #ffffff;
+        }
+
+        /* Hero visual (icon) – subtle on dark bg */
+        .hero-banner .hero-visual {
+            flex: 1 1 240px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 5rem;
+            color: rgba(255, 255, 255, 0.25);
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+            padding: 1.5rem;
+            border-radius: 2rem;
+            backdrop-filter: blur(2px);
+        }
+
+        .hero-banner .hero-visual i {
+            filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.3));
+        }
+
+        /* Dark mode adjustments for hero */
+        .dark .hero-banner .hero-visual {
+            color: rgba(255, 255, 255, 0.20);
+        }
+
+        .dark .hero-banner .hero-content h2 {
+            text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ----- FAQ MAIN (unchanged) ----- */
+        .faq-main {
+            flex-grow: 1;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem 5rem;
+            width: 100%;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .faq-header .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--hover-bg);
+            backdrop-filter: blur(4px);
+            padding: 0.4rem 1.2rem;
+            border-radius: 60px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--pool-primary);
+            border: 1px solid var(--border-light);
+            margin-bottom: 1rem;
+        }
+
+        .faq-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--hero-gradient-start), var(--hero-gradient-end));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .faq-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faq-item {
+            background: var(--faq-item-bg);
+            border-radius: 1.25rem;
+            padding: 1rem 1.5rem;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--faq-shadow);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .faq-item:hover {
+            border-color: var(--pool-primary);
+            box-shadow: 0 12px 24px rgba(0, 105, 148, 0.08);
+        }
+
+        .dark .faq-item:hover {
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.05rem;
+            padding: 0.5rem 0;
+            color: var(--text-body);
+        }
+
+        .faq-question i {
+            color: var(--pool-primary);
+            transition: transform 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1), padding 0.2s ease;
+            padding: 0 0.2rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 0.75rem 0.2rem 0.5rem;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        /* ----- FOOTER (unchanged) ----- */
+        .footer {
+            background-color: var(--bg-body);
+            border-top: 1px solid var(--footer-border);
+            padding: 3rem 1.5rem 2rem;
+            margin-top: auto;
+        }
+
+        .footer-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .footer-col h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--pool-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            margin-bottom: 1.25rem;
+            border-bottom: 2px solid var(--pool-primary);
+            display: inline-block;
+            padding-bottom: 0.25rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-col a {
+            text-decoration: none;
+            color: var(--text-muted);
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-col a:hover {
+            color: var(--pool-primary);
+            transform: translateX(4px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 105, 148, 0.25);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .footer-col:first-child .logo {
+            display: inline-flex;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-col:first-child p {
+            margin-top: 0;
+            padding-top: 0.5rem;
+            line-height: 1.8;
+            max-width: 280px;
+        }
+
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 1280px) {
+            .desktop-nav {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .action-group .icon-btn,
+            .action-group .rtl-btn,
+            .action-group .login-btn-header {
+                display: none;
+            }
+        }
+
+        @media (min-width: 1281px) {
+            .mobile-nav-menu,
+            .mobile-overlay {
+                display: none;
+            }
+            .hamburger {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-banner {
+                padding: 3rem 1.25rem;
+                min-height: 340px;
+                background-position: center 20%;
+            }
+            .hero-banner .hero-content h2 {
+                font-size: 2rem;
+            }
+            .hero-banner .hero-content p {
+                font-size: 1rem;
+            }
+            .hero-banner .hero-visual {
+                font-size: 3.5rem;
+                padding: 1rem;
+            }
+            .faq-header h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-banner .hero-content h2 {
+                font-size: 1.6rem;
+            }
+            .hero-banner .hero-content p {
+                font-size: 0.9rem;
+            }
+            .btn-primary,
+            .btn-secondary {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.85rem;
+            }
+            .faq-header h1 {
+                font-size: 1.8rem;
+            }
+            .faq-item {
+                padding: 0.75rem 1rem;
+            }
+            .faq-question {
+                font-size: 0.95rem;
+            }
+        }
+
+        button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">Oceanix</span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <div class="desktop-nav">
+                <div class="dropdown">
+                    <a href="#" class="nav-link">Home <i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-inner">
+                            <a href="index.html">Home1</a>
+                            <a href="homepage2.html">Home2</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="service.html" class="nav-link">Service</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="donate.html" class="nav-link">Donate</a>
+                <a href="faq.html" class="nav-link active">FAQ</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <div class="dropdown">
+                    <a href="#" class="nav-link">Dashboard <i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-inner">
+                            <a href="user.html">User</a>
+                            <a href="admin.html">Admin</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-group">
+                <button id="themeToggle" class="icon-btn" aria-label="Dark mode"><i class="fas fa-moon"></i></button>
+                <button id="rtlToggle" class="rtl-btn"><span id="rtlButtonText">RTL</span></button>
+                <a href="signin.html" class="login-btn-header">Log in</a>
+                <button id="hamburger" class="hamburger" aria-label="Menu"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== MOBILE OVERLAY & MENU ===== -->
+    <div id="mobileOverlay" class="mobile-overlay"></div>
+    <div id="mobileNavMenu" class="mobile-nav-menu">
+        <ul style="list-style: none;">
+            <li><a href="index.html" class="mobile-link"> Home1</a></li>
+            <li><a href="homepage2.html" class="mobile-link"> Home 2</a></li>
+            <li><a href="about.html" class="mobile-link"> About</a></li>
+            <li><a href="service.html" class="mobile-link"> service</a></li>
+            <li><a href="blog.html" class="mobile-link"> Blog</a></li>
+            <li><a href="donate.html" class="mobile-link">Donate</a></li>
+            <li><a href="faq.html" class="mobile-link active"> FAQ</a></li>
+            <li><a href="contact.html" class="mobile-link"> Contact</a></li>
+            <li><a href="#" class="mobile-link"> Dashboard </a>
+                    <li><a href="user.html" class="mobile-link">User</a></li>
+                    <li><a href="admin.html" class="mobile-link"> Admin</a></li>
+                </ul>
+            </li>
+            <li><a href="signin.html" class="mobile-link"> Login</a></li>
+        </ul>
+        <div style="margin-top: 2rem; border-top: 2px solid var(--border-light); padding-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+            <button id="mobileThemeToggle" class="mobile-link" style="justify-content: center;"><i class="fas fa-moon"></i> Dark </button>
+            <button id="mobileRtlToggle" class="mobile-link" style="justify-content: center;"><span id="mobileRtlButtonText">RTL </span></button>
+        </div>
+    </div>
+
+    <!-- ===== HERO BANNER — with BACKGROUND IMAGE ===== -->
+    <section class="hero-banner">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-circle-question"></i> <span>FAQ & support</span>
+                </div>
+                <h2 style="color:  #00A8CC;;">Cleaner oceans start with you</h2>
+                <p style="line-height: 2;">Explore our FAQ to learn about marine conservation, cleanup expeditions, and how you can become part of the solution.</p>
+                <div class="hero-actions">
+                    <a href="#" class="btn-primary"><i class="fas fa-sailboat"></i> Join the Crew</a>
+                    <a href="#" class="btn-secondary"><i class="fas fa-play"></i> Watch our story</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FAQ SECTION ===== -->
+    <main class="faq-main">
+        <div class="faq-header">
+            <div class="hero-badge">
+                <i class="fas fa-circle-question"></i> <span>frequently asked questions</span>
+            </div>
+            <h1>Got questions? We have answers.</h1>
+            <p  style="line-height: 2;">Everything you need to know about our marine conservation, cleanup expeditions, and how you can get involved.</p>
+        </div>
+
+        <div class="faq-grid">
+            <div class="faq-item active">
+                <div class="faq-question">
+                    <span>What is Oceanix and what do you do?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Oceanix is a science-driven marine conservation initiative focused on plastic recovery, coral restoration, and ocean intelligence. We combine advanced cleanup technologies, AI monitoring, and community action to restore ocean health.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How can I participate in cleanup expeditions?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    You can join our crew by signing up through the “Join the Crew” button. We offer both land‑based coastal cleanups and offshore expeditions. Training, equipment, and safety briefings are provided for all volunteers.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What technology do you use for plastic recovery?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    We deploy a combination of floating barrier systems, autonomous surface vessels, and AI‑powered debris mapping. Our systems are designed to capture microplastics and macro‑plastics while minimizing bycatch.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How does coral restoration work?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    We cultivate resilient coral species in nurseries and transplant them to degraded reef areas. Using AI‑powered monitoring, we track growth, health, and biodiversity recovery to ensure long‑term success.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Is Oceanix a non‑profit or for‑profit organization?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Oceanix is a mission‑driven social enterprise. We reinvest revenue from technology licensing and partnerships back into conservation programs. Transparency and impact are at our core.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I stay updated on Oceanix projects?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Subscribe to our newsletter, follow us on social media, or check the “Blog” section. We publish quarterly impact reports and real‑time expedition updates.
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="index.html" class="logo" style="margin-bottom: 1rem; display: inline-flex;">
+                    <span class="logo-text">Oceanix</span>
+                </a>
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Innovative marine conservation & cleanup. Science, technology, and community working for a healthier ocean.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Our Projects</a></li>
+                    <li><a href="#">Get Involved</a></li>
+                    <li><a href="#">Research</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Ocean Literacy</a></li>
+                    <li><a href="#">Cleanup Toolkit</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Oceanix · Marine Conservation & Ocean Cleanup. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        (function() {
+            const htmlEl = document.documentElement;
+            const mobileMenu = document.getElementById('mobileNavMenu');
+            const overlay = document.getElementById('mobileOverlay');
+            const hamburger = document.getElementById('hamburger');
+            const themeToggle = document.getElementById('themeToggle');
+            const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+            const rtlToggle = document.getElementById('rtlToggle');
+            const mobileRtlToggle = document.getElementById('mobileRtlToggle');
+            const rtlSpan = document.getElementById('rtlButtonText');
+            const mobileRtlSpan = document.getElementById('mobileRtlButtonText');
+
+            // ----- Mobile menu -----
+            function closeMenu() {
+                if (!mobileMenu) return;
+                mobileMenu.classList.remove('open');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+                if (hamburger) hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+
+            function openMenu() {
+                if (!mobileMenu) return;
+                mobileMenu.classList.add('open');
+                if (overlay) overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                if (hamburger) hamburger.innerHTML = '<i class="fas fa-times"></i>';
+            }
+
+            function toggleMenu() {
+                if (mobileMenu.classList.contains('open')) closeMenu();
+                else openMenu();
+            }
+
+            if (hamburger) hamburger.addEventListener('click', toggleMenu);
+            if (overlay) overlay.addEventListener('click', closeMenu);
+
+            // ----- Dark mode -----
+            function setTheme(isDark) {
+                if (isDark) {
+                    htmlEl.classList.add('dark');
+                } else {
+                    htmlEl.classList.remove('dark');
+                }
+                const moonIcon = document.querySelector('#themeToggle i');
+                const mobileIcon = document.querySelector('#mobileThemeToggle i');
+                if (moonIcon) moonIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+                if (mobileIcon) mobileIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+
+                const mobileToggleText = document.getElementById('mobileThemeToggle');
+                if (mobileToggleText) {
+                    mobileToggleText.innerHTML = isDark ? '<i class="fas fa-sun"></i> Light ' :
+                        '<i class="fas fa-moon"></i> Dark ';
+                }
+                localStorage.setItem('oceanixTheme', isDark ? 'dark' : 'light');
+            }
+
+            function toggleTheme() {
+                const isDark = !htmlEl.classList.contains('dark');
+                setTheme(isDark);
+            }
+
+            function refreshMobileThemeBtn() {
+                const btn = document.getElementById('mobileThemeToggle');
+                if (!btn) return;
+                const isDark = htmlEl.classList.contains('dark');
+                btn.innerHTML = isDark ? '<i class="fas fa-sun"></i> Light ' : '<i class="fas fa-moon"></i> Dark ';
+            }
+
+            if (themeToggle) themeToggle.addEventListener('click', () => { toggleTheme();
+                refreshMobileThemeBtn(); });
+            if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', () => { toggleTheme();
+                refreshMobileThemeBtn(); });
+
+            // ----- RTL -----
+            function setDirection(isRtl) {
+                if (isRtl) {
+                    htmlEl.setAttribute('dir', 'rtl');
+                    if (rtlSpan) rtlSpan.textContent = 'LTR';
+                    if (mobileRtlSpan) mobileRtlSpan.textContent = 'LTR ';
+                } else {
+                    htmlEl.setAttribute('dir', 'ltr');
+                    if (rtlSpan) rtlSpan.textContent = 'RTL';
+                    if (mobileRtlSpan) mobileRtlSpan.textContent = 'RTL ';
+                }
+                localStorage.setItem('oceanixDirection', isRtl ? 'rtl' : 'ltr');
+                closeMenu();
+            }
+
+            function toggleRTL() {
+                const isRtl = htmlEl.getAttribute('dir') === 'rtl';
+                setDirection(!isRtl);
+            }
+
+            if (rtlToggle) rtlToggle.addEventListener('click', toggleRTL);
+            if (mobileRtlToggle) mobileRtlToggle.addEventListener('click', toggleRTL);
+
+            // ----- Init from storage -----
+            const savedTheme = localStorage.getItem('oceanixTheme');
+            if (savedTheme === 'dark') setTheme(true);
+            else setTheme(false);
+            refreshMobileThemeBtn();
+
+            const savedDir = localStorage.getItem('oceanixDirection');
+            if (savedDir === 'rtl') setDirection(true);
+            else setDirection(false);
+
+            if (mobileMenu) mobileMenu.classList.remove('open');
+            if (overlay) overlay.classList.remove('active');
+            document.body.style.overflow = '';
+
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 1280) closeMenu();
+            });
+
+            // ----- FAQ accordion -----
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', function(e) {
+                    faqItems.forEach(other => {
+                        if (other !== item && other.classList.contains('active')) {
+                            other.classList.remove('active');
+                        }
+                    });
+                    item.classList.toggle('active');
+                });
+            });
+        })();
+    </script>
+
+</body>
+</html>

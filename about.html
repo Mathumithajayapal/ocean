@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>About · Oceanix – Marine Conservation & Ocean Cleanup</title>
+
+    <!-- Google Fonts + Font Awesome 6 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ----- reset & base ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-body: #ffffff;
+            --text-body: #0a2e3f;
+            --header-bg: rgba(255, 255, 255, 0.96);
+            --header-shadow: 0 4px 12px rgba(0, 30, 50, 0.08);
+            --border-light: #c7e2ed;
+            --card-bg: #ffffff;
+            --footer-border: #b8d8e8;
+            --text-muted: #1a5a73;
+            --pool-primary: #006994;
+            --pool-dark: #004d73;
+            --pool-accent: #3a9bc7;
+            --pool-light-bg: #e2f0f7;
+            --dropdown-bg: #ffffff;
+            --dropdown-border: #c5e0ed;
+            --hover-bg: rgba(0, 105, 148, 0.10);
+            --btn-gradient-start: #006994;
+            --btn-gradient-end: #004d73;
+            --logo-gradient-start: #006994;
+            --logo-gradient-end: #004d73;
+            --hero-gradient-start: #006994;
+            --hero-gradient-end: #3a9bc7;
+            --section-alt: #f5fafd;
+            --hero-overlay: rgba(0, 40, 60, 0.60);
+            --section-heading-color: #00A8CC;
+            --cta-bg-start: #004d73;
+            --cta-bg-end: #002b3f;
+        }
+
+        .dark {
+            --bg-body: #000000;
+            --text-body: #eaf2f7;
+            --header-bg: rgba(0, 0, 0, 0.92);
+            --header-shadow: 0 4px 14px rgba(0, 0, 0, 0.7);
+            --border-light: #1f313a;
+            --card-bg: #181e24;
+            --footer-border: #1b2a33;
+            --text-muted: #aac7db;
+            --pool-primary: #3a9bc7;
+            --pool-dark: #1f7fa8;
+            --pool-accent: #6fb9db;
+            --pool-light-bg: #0b141a;
+            --dropdown-bg: #181e24;
+            --dropdown-border: #293c48;
+            --hover-bg: rgba(58, 155, 199, 0.18);
+            --btn-gradient-start: #1f7fa8;
+            --btn-gradient-end: #3a9bc7;
+            --logo-gradient-start: #3a9bc7;
+            --logo-gradient-end: #1f7fa8;
+            --hero-gradient-start: #e2f0f7;
+            --hero-gradient-end: #3a9bc7;
+            --section-alt: #080e12;
+            --hero-overlay: rgba(0, 0, 0, 0.70);
+            --section-heading-color: #00A8CC;
+            --cta-bg-start: #0a2e3f;
+            --cta-bg-end: #05161f;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-body);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background-color 0.25s ease, color 0.25s ease;
+        }
+
+        /* ----- header / nav (unchanged) ----- */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--header-bg);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--header-shadow);
+            transition: background-color 0.2s;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+        }
+        .logo-icon {
+            font-size: 28px;
+            color: var(--pool-primary);
+            transition: transform 0.2s ease;
+        }
+        .logo:hover .logo-icon {
+            transform: scale(0.98);
+            color: var(--pool-dark);
+        }
+        .logo-text {
+            font-size: 24px;
+            font-weight: 800;
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, var(--logo-gradient-start), var(--logo-gradient-end));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.2px;
+        }
+        .desktop-nav {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            color: var(--text-body);
+            transition: all 0.2s;
+        }
+        .nav-link:hover {
+            background-color: var(--hover-bg);
+            color: var(--pool-primary);
+        }
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            padding-top: 0.5rem;
+            display: none;
+            min-width: 220px;
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .dropdown-inner {
+            background-color: var(--dropdown-bg);
+            border: 1px solid var(--dropdown-border);
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            padding: 0.75rem 0;
+            backdrop-filter: blur(8px);
+        }
+        .dropdown-inner a {
+            display: block;
+            padding: 0.6rem 1.5rem;
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--text-body);
+            transition: all 0.2s;
+        }
+        .dropdown-inner a:hover {
+            background-color: var(--pool-primary);
+            color: #ffffff;
+            padding-left: 2rem;
+        }
+        .action-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .icon-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            color: var(--text-body);
+            transition: all 0.2s;
+        }
+        .icon-btn:hover {
+            background-color: var(--hover-bg);
+            color: var(--pool-primary);
+        }
+        .rtl-btn {
+            padding: 0 1rem;
+            height: 2.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            background: transparent;
+            border: none;
+            color: var(--text-body);
+            transition: all 0.2s;
+        }
+        .rtl-btn:hover {
+            background-color: var(--hover-bg);
+            color: var(--pool-primary);
+        }
+        .login-btn-header {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            border: 2px solid var(--pool-primary);
+            color: var(--pool-primary);
+            background: transparent;
+            text-decoration: none;
+            transition: all 0.2s;
+            font-size: 0.85rem;
+        }
+        .login-btn-header:hover {
+            background-color: var(--pool-primary);
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 105, 148, 0.3);
+        }
+        .hamburger {
+            display: none;
+            width: 2.5rem;
+            height: 2.5rem;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            border: 2px solid var(--border-light);
+            background: transparent;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--text-body);
+        }
+        .mobile-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s;
+        }
+        .mobile-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .mobile-nav-menu {
+            position: fixed;
+            top: 0;
+            width: 80%;
+            max-width: 320px;
+            height: 100%;
+            background-color: var(--card-bg);
+            z-index: 999;
+            box-shadow: -8px 0 25px rgba(0, 0, 0, 0.5);
+            border-left: 4px solid var(--pool-primary);
+            overflow-y: auto;
+            padding: 90px 1.5rem 2rem;
+            transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        .dark .mobile-nav-menu {
+            background-color: #141a20;
+            border-left-color: var(--pool-accent);
+        }
+        html:not([dir="rtl"]) .mobile-nav-menu {
+            right: 0;
+            transform: translateX(100%);
+        }
+        html[dir="rtl"] .mobile-nav-menu {
+            left: 0;
+            transform: translateX(-100%);
+        }
+        .mobile-nav-menu.open {
+            transform: translateX(0) !important;
+        }
+        .mobile-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.8rem 1rem;
+            border-radius: 1rem;
+            border: 2px solid var(--border-light);
+            background: var(--card-bg);
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--text-body);
+            margin-bottom: 0.75rem;
+            transition: all 0.2s;
+        }
+        .mobile-link i {
+            width: 1.5rem;
+            color: var(--pool-primary);
+        }
+
+        /* ----- about page sections ----- */
+        .about-page {
+            flex: 1;
+        }
+        .section {
+            padding: 4rem 1.5rem;
+        }
+        .section-alt {
+            background-color: var(--section-alt);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--section-heading-color, #0077B3);
+        }
+        .section-sub {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 2.5rem;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+        .grid-2col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            align-items: start;
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            border: 1px solid var(--border-light);
+            transition: all 0.25s ease;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.03);
+        }
+        .dark .card {
+            background: #181e24;
+            border-color: #1f313a;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
+        }
+        .card:hover {
+            border-color: var(--pool-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px rgba(0, 105, 148, 0.12);
+        }
+        .card-icon {
+            font-size: 2.8rem;
+            color: var(--pool-primary);
+            margin-bottom: 1rem;
+        }
+        .card h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .card p {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .mission-vision-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        @media (max-width: 700px) {
+            .mission-vision-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .mv-card {
+            background: var(--card-bg);
+            border-radius: 2rem;
+            padding: 2.5rem 2rem;
+            border: 2px solid var(--border-light);
+            transition: 0.2s;
+            text-align: center;
+        }
+        .mv-card:hover {
+            border-color: var(--pool-primary);
+            box-shadow: 0 12px 28px rgba(0, 105, 148, 0.12);
+        }
+        .mv-card i {
+            font-size: 3.2rem;
+            color: var(--pool-primary);
+            margin-bottom: 1.2rem;
+        }
+        .mv-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin-bottom: 0.75rem;
+        }
+        .mv-card p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        /* --- TEAM --- */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            background: var(--card-bg);
+            border-radius: 2rem;
+            padding: 1.5rem 1rem 1.8rem;
+            border: 1px solid var(--border-light);
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.03);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .dark .team-member {
+            background: #181e24;
+            border-color: #1f313a;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+        }
+        .team-member:hover {
+            transform: translateY(-6px);
+            border-color: var(--pool-primary);
+            box-shadow: 0 18px 30px rgba(0, 105, 148, 0.12);
+        }
+
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid var(--pool-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+            margin-bottom: 1rem;
+            transition: all 0.2s;
+            box-shadow: 0 6px 14px rgba(0, 105, 148, 0.25);
+            background: linear-gradient(145deg, #3a9bc7, #004d73);
+        }
+        .dark .team-avatar {
+            border-color: var(--pool-accent);
+            background: linear-gradient(145deg, #1f7fa8, #0a2e3f);
+        }
+        .team-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .team-member:hover .team-avatar img {
+            transform: scale(1.04);
+        }
+        .team-member:hover .team-avatar {
+            border-color: var(--pool-dark);
+            box-shadow: 0 10px 20px rgba(0, 105, 148, 0.35);
+        }
+
+        .team-member h4 {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-top: 0.25rem;
+            margin-bottom: 0.15rem;
+        }
+        .team-member p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        .values-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .value-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            padding: 0.8rem 1.8rem;
+            border-radius: 60px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-weight: 600;
+        }
+        .value-item i {
+            color: var(--pool-primary);
+        }
+
+        .btn-primary {
+            background: linear-gradient(105deg, var(--btn-gradient-start), var(--btn-gradient-end));
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 3rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: all 0.2s;
+            box-shadow: 0 5px 14px rgba(0, 105, 148, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            filter: brightness(0.96);
+            box-shadow: 0 8px 20px rgba(0, 105, 148, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--pool-primary);
+            padding: 0.75rem 2rem;
+            border-radius: 3rem;
+            font-weight: 700;
+            color: var(--pool-primary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: all 0.2s;
+        }
+        .btn-outline:hover {
+            background: var(--pool-primary);
+            color: #ffffff;
+        }
+
+        /* ============================================================
+           CTA SECTION — brand new, placed before footer
+           ============================================================ */
+        .cta-section {
+            background: linear-gradient(135deg, var(--cta-bg-start), var(--cta-bg-end));
+            padding: 5rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+            border-top: 3px solid var(--pool-primary);
+            border-bottom: 3px solid var(--pool-primary);
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233a9bc7' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        .cta-section .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        .cta-section .cta-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(58, 155, 199, 0.20);
+            backdrop-filter: blur(4px);
+            padding: 0.3rem 1.2rem;
+            border-radius: 60px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #b3e4ff;
+            border: 1px solid rgba(58, 155, 199, 0.25);
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .cta-section .cta-badge i {
+            color: #6fb9db;
+        }
+        .cta-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+        .cta-section h2 em {
+            font-style: italic;
+            color: #6fb9db;
+        }
+        .cta-section .cta-desc {
+            color: rgba(255, 255, 255, 0.80);
+            font-size: 1.15rem;
+            max-width: 640px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.8;
+        }
+        .cta-section .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .cta-section .btn-cta-primary {
+            background: linear-gradient(105deg, #ffffff, #d4edff);
+            color: #003b4f;
+            padding: 0.9rem 2.4rem;
+            border-radius: 3rem;
+            font-weight: 700;
+            font-size: 1.05rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            transition: all 0.25s ease;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
+            border: none;
+        }
+        .cta-section .btn-cta-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
+            filter: brightness(0.96);
+        }
+        .cta-section .btn-cta-secondary {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            color: #ffffff;
+            padding: 0.9rem 2.4rem;
+            border-radius: 3rem;
+            font-weight: 700;
+            font-size: 1.05rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            transition: all 0.25s ease;
+        }
+        .cta-section .btn-cta-secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: #ffffff;
+            transform: translateY(-3px);
+        }
+        .cta-section .cta-stats-mini {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.10);
+        }
+        .cta-section .cta-stats-mini .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .cta-section .cta-stats-mini .stat-item i {
+            color: #6fb9db;
+            font-size: 1.2rem;
+        }
+        .cta-section .cta-stats-mini .stat-item strong {
+            color: #ffffff;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-right: 0.2rem;
+        }
+        @media (max-width: 640px) {
+            .cta-section h2 {
+                font-size: 2.2rem;
+            }
+            .cta-section .cta-desc {
+                font-size: 1rem;
+            }
+            .cta-section .cta-stats-mini {
+                gap: 1.2rem;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* ----- footer (unchanged) ----- */
+        .footer {
+            background-color: var(--bg-body);
+            border-top: 1px solid var(--footer-border);
+            padding: 3rem 1.5rem 2rem;
+            margin-top: 0;
+        }
+        .footer-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .footer-col h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--pool-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            margin-bottom: 1.25rem;
+            border-bottom: 2px solid var(--pool-primary);
+            display: inline-block;
+            padding-bottom: 0.25rem;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col li {
+            margin-bottom: 0.6rem;
+        }
+        .footer-col a {
+            text-decoration: none;
+            color: var(--text-muted);
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .footer-col a:hover {
+            color: var(--pool-primary);
+            transform: translateX(4px);
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 105, 148, 0.25);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .footer-col:first-child .logo {
+            display: inline-flex;
+            margin-bottom: 1rem;
+        }
+        .footer-col:first-child p {
+            margin-top: 0;
+            padding-top: 0.5rem;
+            line-height: 1.8;
+            max-width: 280px;
+        }
+
+        @media (max-width: 1280px) {
+            .desktop-nav {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .action-group .icon-btn,
+            .action-group .rtl-btn,
+            .action-group .login-btn-header {
+                display: none;
+            }
+        }
+        @media (min-width: 1281px) {
+            .mobile-nav-menu,
+            .mobile-overlay {
+                display: none;
+            }
+            .hamburger {
+                display: none;
+            }
+        }
+        button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .nav-link.active {
+            background-color: var(--pool-primary);
+            color: #ffffff;
+        }
+        .nav-link.active:hover {
+            background-color: var(--pool-dark);
+            color: #ffffff;
+        }
+        .mobile-link.active {
+            background: var(--pool-primary);
+            color: #fff;
+            border-color: var(--pool-primary);
+        }
+        .mobile-link.active i {
+            color: #fff;
+        }
+
+        /* ============================================================
+               HERO BANNER — exact match from index.html
+               ============================================================ */
+        .hero-banner {
+            position: relative;
+            width: 100%;
+            min-height: 75vh;
+            background-image: url('image/ocean animal (4).jpg');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border-radius: 0;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+        .dark .hero-banner {
+            background-image: url('image/ocean animal (4).jpg');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--hero-overlay);
+            z-index: 1;
+            pointer-events: none;
+        }
+        .hero-banner .wave-decoration {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,60 C300,120 600,0 900,60 C1050,90 1150,30 1200,30 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.04)"/></svg>') repeat-x bottom;
+            background-size: 1200px 80px;
+            animation: waveMove 18s linear infinite;
+            opacity: 0.3;
+            z-index: 2;
+            pointer-events: none;
+        }
+        @keyframes waveMove {
+            0% {
+                background-position-x: 0;
+            }
+            100% {
+                background-position-x: 1200px;
+            }
+        }
+
+        .hero-banner .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 820px;
+            padding: 2rem;
+            text-align: center;
+            color: #fff;
+            backdrop-filter: blur(2px);
+        }
+
+        .hero-banner .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.8rem;
+            font-weight: 700;
+            color: var(--section-heading-color, #0077B3);
+            margin-bottom: 0.75rem;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+        }
+
+        .hero-banner .hero-desc {
+            color: rgba(255, 255, 255, 0.90);
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+        }
+        .hero-banner .btn-primary {
+            background: linear-gradient(105deg, #ffffff, #d4edff);
+            color: #003b4f;
+            border: none;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+        }
+        .hero-banner .btn-primary:hover {
+            transform: translateY(-3px);
+            filter: brightness(0.96);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+        }
+        .hero-banner .btn-outline {
+            border-color: rgba(255, 255, 255, 0.7);
+            color: #fff;
+        }
+        .hero-banner .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.18);
+            border-color: #fff;
+            color: #fff;
+        }
+        .hero-banner .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(6px);
+            padding: 0.4rem 1rem;
+            border-radius: 60px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-banner .hero-title {
+                font-size: 2.6rem;
+            }
+            .hero-banner {
+                min-height: 60vh;
+                border-radius: 0;
+                background-attachment: scroll;
+            }
+            .dark .hero-banner {
+                background-attachment: scroll;
+            }
+        }
+
+        /* ============================================================
+               NEW "OUR STORY" — split layout with image
+               ============================================================ */
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        .story-text .section-label {
+            display: inline-block;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--pool-primary);
+            background: var(--hover-bg);
+            padding: 0.25rem 1.2rem;
+            border-radius: 60px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-light);
+        }
+        .story-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--pool-primary);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        .story-text h2 em {
+            font-style: italic;
+            color: var(--text-body);
+        }
+        .story-text p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+        }
+        .story-text .quote-block {
+            margin: 1.5rem 0 0.5rem;
+            padding: 1.2rem 1.8rem;
+            border-left: 4px solid var(--pool-primary);
+            background: var(--hover-bg);
+            border-radius: 0 1rem 1rem 0;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--text-body);
+        }
+        .dark .story-text .quote-block {
+            background: rgba(58, 155, 199, 0.08);
+        }
+        .story-text .quote-block i {
+            color: var(--pool-primary);
+            opacity: 0.6;
+            margin: 0 0.2rem;
+        }
+        .story-image img {
+            width: 100%;
+            border-radius: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            object-fit: cover;
+            height: 400px;
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+        }
+        .dark .story-image img {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border-color: #1f313a;
+        }
+        .story-image img:hover {
+            transform: scale(1.01);
+            box-shadow: 0 25px 50px rgba(0, 105, 148, 0.15);
+        }
+
+        @media (max-width: 880px) {
+            .story-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+            .story-image {
+                order: 1;
+            }
+            .story-text {
+                order: 2;
+            }
+            .story-text h2 {
+                font-size: 2.2rem;
+            }
+            .story-image img {
+                height: 280px;
+            }
+            .story-text .quote-block {
+                text-align: left;
+            }
+        }
+        @media (max-width: 480px) {
+            .story-text h2 {
+                font-size: 1.8rem;
+            }
+            .story-image img {
+                height: 200px;
+            }
+        }
+
+        /* ============================================================
+               NEW "OUR APPROACH" — 4 pillars  (FIXED: equal height cards)
+               ============================================================ */
+        .approach-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin-top: 0.5rem;
+            align-items: stretch;
+        }
+
+        .approach-card {
+            background: var(--card-bg);
+            border-radius: 1.8rem;
+            padding: 2.2rem 1.8rem;
+            border: 1px solid var(--border-light);
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02);
+            position: relative;
+            overflow: hidden;
+            /* --- FIX: flex column + full height --- */
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-height: 340px;
+        }
+        .dark .approach-card {
+            background: #181e24;
+            border-color: #1f313a;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        .approach-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--pool-primary), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .approach-card:hover::after {
+            opacity: 1;
+        }
+        .approach-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--pool-primary);
+            box-shadow: 0 16px 34px rgba(0, 105, 148, 0.12);
+        }
+        .dark .approach-card:hover {
+            box-shadow: 0 16px 34px rgba(0, 105, 148, 0.18);
+        }
+
+        .approach-icon {
+            font-size: 2.8rem;
+            color: var(--pool-primary);
+            background: var(--hover-bg);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.2rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            flex-shrink: 0;
+        }
+        .approach-card:hover .approach-icon {
+            background: var(--pool-primary);
+            color: #fff;
+            border-color: var(--pool-primary);
+            transform: scale(1.04);
+        }
+        .dark .approach-card:hover .approach-icon {
+            background: var(--pool-accent);
+            color: #000;
+            border-color: var(--pool-accent);
+        }
+
+        .approach-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin-bottom: 0.6rem;
+            color: var(--text-body);
+            flex-shrink: 0;
+        }
+        .approach-card p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 0.95rem;
+            /* --- FIX: take remaining space --- */
+            flex: 1;
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ============================================================
+               NEW "OUR JOURNEY" — vertical timeline
+               ============================================================ */
+        .timeline-new {
+            position: relative;
+            max-width: 780px;
+            margin: 1.5rem auto 0;
+            padding: 0 0 0 2rem;
+        }
+        .timeline-new::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--pool-primary), var(--pool-accent), transparent);
+            border-radius: 6px;
+            opacity: 0.5;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 0 0 2.5rem 2.8rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: -4px;
+            top: 2px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--pool-primary), var(--pool-accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 4px 14px rgba(0, 105, 148, 0.3);
+            z-index: 2;
+            transition: all 0.3s ease;
+            border: 2px solid var(--bg-body);
+        }
+        .dark .timeline-marker {
+            border-color: var(--bg-body);
+            box-shadow: 0 4px 14px rgba(0, 105, 148, 0.3);
+        }
+        .timeline-item:hover .timeline-marker {
+            transform: scale(1.10);
+            box-shadow: 0 8px 24px rgba(0, 105, 148, 0.45);
+        }
+        .dark .timeline-item:hover .timeline-marker {
+            box-shadow: 0 8px 24px rgba(0, 105, 148, 0.5);
+        }
+
+        .timeline-content {
+            background: var(--card-bg);
+            border-radius: 1.4rem;
+            padding: 1.2rem 1.8rem;
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02);
+            width: 100%;
+        }
+        .dark .timeline-content {
+            background: #181e24;
+            border-color: #1f313a;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+        }
+        .timeline-item:hover .timeline-content {
+            border-color: var(--pool-primary);
+            transform: translateX(4px);
+            box-shadow: 0 10px 28px rgba(0, 105, 148, 0.08);
+        }
+        .dark .timeline-item:hover .timeline-content {
+            box-shadow: 0 10px 28px rgba(0, 105, 148, 0.12);
+        }
+
+        .timeline-content .tl-year {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--pool-primary);
+            letter-spacing: 0.5px;
+            display: inline-block;
+            margin-bottom: 0.15rem;
+        }
+        .timeline-content h4 {
+            font-weight: 700;
+            font-size: 1.15rem;
+            margin-bottom: 0.15rem;
+            color: var(--text-body);
+        }
+        .timeline-content p {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        @media (max-width: 600px) {
+            .timeline-new {
+                padding: 0 0 0 1.2rem;
+            }
+            .timeline-item {
+                padding: 0 0 2rem 2rem;
+            }
+            .timeline-marker {
+                width: 36px;
+                height: 36px;
+                font-size: 0.8rem;
+                left: -2px;
+                top: 0px;
+            }
+            .timeline-content {
+                padding: 1rem 1.2rem;
+            }
+            .timeline-content h4 {
+                font-size: 1rem;
+            }
+            .approach-grid {
+                grid-template-columns: 1fr;
+                max-width: 420px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .approach-icon {
+                width: 64px;
+                height: 64px;
+                font-size: 2rem;
+            }
+            .approach-card {
+                min-height: 280px;
+            }
+        }
+
+        /* impact stats grid */
+        .impact-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .impact-stat-card {
+            background: var(--card-bg);
+            border-radius: 2rem;
+            padding: 1.5rem 0.5rem;
+            border: 1px solid var(--border-light);
+            transition: all 0.2s;
+        }
+        .impact-stat-card:hover {
+            border-color: var(--pool-primary);
+            transform: translateY(-4px);
+        }
+        .impact-stat-card i {
+            font-size: 2.2rem;
+            color: var(--pool-primary);
+        }
+        .impact-stat-card h3 {
+            font-size: 2rem;
+            margin: 0.2rem 0;
+            color: var(--pool-primary);
+        }
+        .impact-stat-card p {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">Oceanix</span>
+            </a>
+
+            <div class="desktop-nav">
+                <div class="dropdown">
+                    <a href="#" class="nav-link">Home <i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-menu"><div class="dropdown-inner"><a href="index.html">Home1</a><a href="homepage2.html">Home2</a></div></div>
+                </div>
+                <a href="about.html" class="nav-link active">About</a>
+                <a href="service.html" class="nav-link">Service</a>
+                <a href="#" class="nav-link">Blog</a>
+                <a href="donate.html" class="nav-link">Donate</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="contact.html" class="nav-link">contact</a>
+                <div class="dropdown">
+                    <a href="#" class="nav-link">Dashboard <i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-menu"><div class="dropdown-inner"><a href="user.html">User</a><a href="admin.html">Admin</a></div></div>
+                </div>
+            </div>
+
+            <div class="action-group">
+                <button id="themeToggle" class="icon-btn" aria-label="Dark mode"><i class="fas fa-moon"></i></button>
+                <button id="rtlToggle" class="rtl-btn"><span id="rtlButtonText">RTL</span></button>
+                <a href="signin.html" class="login-btn-header">Log in</a>
+                <button id="hamburger" class="hamburger" aria-label="Menu"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile -->
+    <div id="mobileOverlay" class="mobile-overlay"></div>
+    <div id="mobileNavMenu" class="mobile-nav-menu">
+        <ul style="list-style: none;">
+            <li><a href="index.html" class="mobile-link">Home1</a></li>
+            <li><a href="homepage2.html" class="mobile-link">Home 2</a></li>
+            <li><a href="about.html" class="mobile-link active">About</a></li>
+            <li><a href="service.html" class="mobile-link">service</a></li>
+            <li><a href="blog.html" class="mobile-link">Blog</a></li>
+            <li><a href="donate.html" class="mobile-link">Donate</a></li>
+            <li><a href="faq.html" class="mobile-link">FAQ</a></li>
+            <li><a href="contact.html" class="mobile-link">Contact</a></li>
+            <li><a href="#" class="mobile-link">Dashboard</a>
+                    <li><a href="user.html" class="mobile-link" >User</a></li>
+                    <li><a href="admin.html" class="mobile-link" >Admin</a></li>
+                </ul>
+            </li>
+            <li><a href="signin.html" class="mobile-link">Login</a></li>
+        </ul>
+        <div style="margin-top: 2rem; border-top: 2px solid var(--border-light); padding-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+            <button id="mobileThemeToggle" class="mobile-link" style="justify-content: center;"><i class="fas fa-moon"></i> Dark</button>
+            <button id="mobileRtlToggle" class="mobile-link" style="justify-content: center;"><span id="mobileRtlButtonText">RTL</span></button>
+        </div>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <main class="about-page">
+
+        <!-- ============================================================
+        HERO BANNER — exact match from index.html
+        ============================================================ -->
+        <section class="hero-banner">
+            <div class="wave-decoration"></div>
+            <div class="hero-content">
+                <div class="hero-badge"><i class="fas fa-water"></i> <span>about oceanix · marine conservation</span></div>
+                <h1 class="hero-title">Driven by the Sea</h1>
+                <p class="hero-desc" style="line-height: 2;">We are scientists, engineers, and ocean advocates united to restore marine ecosystems.</p>
+                <div class="cta-group">
+                    <a href="#" class="btn-primary"><i class="fas fa-ship"></i> Our Mission</a>
+                    <a href="#" class="btn-outline"><i class="fas fa-globe-americas"></i> Explore Impact</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- IMPACT -->
+        <section class="section" style="padding-bottom: 3rem;">
+            <div class="container">
+                <h2 class="section-title">Our Impact</h2>
+                <p class="section-sub">Since 2020, Oceanix has grown from a local initiative to a global force for marine conservation.</p>
+                <div class="impact-stats-grid">
+                    <div class="impact-stat-card"><i class="fas fa-globe"></i><h3>8+</h3><p>countries</p></div>
+                    <div class="impact-stat-card"><i class="fas fa-users"></i><h3>4.2k</h3><p>volunteers</p></div>
+                    <div class="impact-stat-card"><i class="fas fa-tree"></i><h3>12k</h3><p>mangroves planted</p></div>
+                    <div class="impact-stat-card"><i class="fas fa-fish"></i><h3>6 +</h3><p>reefs restored</p></div>
+                </div>
+                <div style="text-align:center; margin-top:2rem;">
+                    <a href="#" class="btn-primary"><i class="fas fa-chart-line"></i> See full report</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        NEW "OUR STORY" — with image
+        ============================================================ -->
+        <section class="section">
+            <div class="container">
+                <div class="story-grid">
+                    <div class="story-text">
+                        <span class="section-label"><i class="fas fa-ship"></i> our story</span>
+                        <h2>Born on the Open Water</h2>
+                        <p>
+                            Oceanix was born on a small research vessel off the coast of Bali in 2020.
+                            What started as a 10‑day microplastic survey evolved into a global movement
+                            when we realized the scale of the crisis — and the power of community action.
+                        </p>
+                        <p>
+                            Today, we combine field science with open‑source technology to map ocean pollution
+                            in real time. Our crew includes marine biologists, data engineers, and former fishermen
+                            who know the sea better than anyone.
+                        </p>
+                        <div class="quote-block">
+                            <i class="fas fa-quote-left"></i>
+                            We believe the ocean can heal if we give it a chance.
+                            <i class="fas fa-quote-right"></i>
+                        </div>
+                    </div>
+                    <div class="story-image">
+                        <img src="image/ocean (1).jpg" alt="Oceanix team on a boat during a cleanup expedition" loading="lazy" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        NEW "OUR JOURNEY" — vertical timeline with 5 milestones
+        ============================================================ -->
+        <section class="section story-section" style="background: var(--section-alt);">
+            <div class="container">
+                <h2 class="section-title">Our Journey</h2>
+                <p class="section-sub">From a single boat to a global movement — every milestone brings us closer to a thriving ocean.</p>
+                <div class="timeline-new">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"><span>1</span></div>
+                        <div class="timeline-content">
+                            <span class="tl-year"><i class="far fa-calendar-alt"></i> 2020</span>
+                            <h4>First Voyage</h4>
+                            <p>A small team of 6 sets sail from Bali to map microplastic pollution — the spark that ignited Oceanix.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"><span>2</span></div>
+                        <div class="timeline-content">
+                            <span class="tl-year"><i class="far fa-calendar-alt"></i> 2021</span>
+                            <h4>Global Network</h4>
+                            <p>Partnerships with 12 research institutes across 5 countries launch our first coordinated cleanup campaigns.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"><span>3</span></div>
+                        <div class="timeline-content">
+                            <span class="tl-year"><i class="far fa-calendar-alt"></i> 2022</span>
+                            <h4>Tech Hub</h4>
+                            <p>Our open‑source AI debris‑mapping platform goes live, empowering communities worldwide to track ocean pollution.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"><span>4</span></div>
+                        <div class="timeline-content">
+                            <span class="tl-year"><i class="far fa-calendar-alt"></i> 2023</span>
+                            <h4>Reef Revival</h4>
+                            <p>We restore our first 3 coral reefs using innovative bio‑rock technology and community‑led planting.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"><span>5</span></div>
+                        <div class="timeline-content">
+                            <span class="tl-year"><i class="far fa-calendar-alt"></i> 2025</span>
+                            <h4>Million‑Mangrove Pledge</h4>
+                            <p>We hit 12,000 mangroves planted and launch our pledge to restore 1 million by 2030 — with your help.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MISSION & VISION -->
+        <section class="section" style="padding: 4rem 1.5rem;">
+            <div class="container">
+                <h2 class="section-title">Our Mission &amp; Vision</h2>
+                <div class="mission-vision-grid">
+                    <div class="mv-card"><i class="fas fa-bullseye"></i><h3>Mission</h3><p>To deploy science, technology, and community action to eliminate ocean plastic, restore marine habitats, and inspire a global movement for ocean stewardship.</p></div>
+                    <div class="mv-card"><i class="fas fa-eye"></i><h3>Vision</h3><p>A thriving, plastic‑free ocean where marine biodiversity flourishes and coastal communities live in harmony with the sea — for generations to come.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        THE HEART OF OCEANIX — with real images
+        ============================================================ -->
+        <section class="section section-alt">
+            <div class="container">
+                <h2 class="section-title">The Heart of Oceanix</h2>
+                <p class="section-sub">A diverse crew of marine scientists, engineers, and activists — all committed to a healthier ocean.</p>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="team-avatar">
+                            <img src="image/bussiness man (5).jpg" alt="Dr. Maya Rivera" loading="lazy" />
+                        </div>
+                        <h4>Dr. Maya Rivera</h4>
+                        <p>Chief Marine Biologist</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-avatar">
+                            <img src="image/bussiness man (2).jpg" alt="James Okafor" loading="lazy" />
+                        </div>
+                        <h4>James Okafor</h4>
+                        <p>Tech &amp; Innovation Lead</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-avatar">
+                            <img src="image/bussiness man (3).jpg" alt="Elena Chen" loading="lazy" />
+                        </div>
+                        <h4>Elena Chen</h4>
+                        <p>Community Director</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-avatar">
+                            <img src="image/bussiness man (4).jpg" alt="Dr. Liam Patel" loading="lazy" />
+                        </div>
+                        <h4>Dr. Liam Patel</h4>
+                        <p>Restoration Specialist</p>
+                    </div>
+                </div>
+                <div style="margin-top:2.5rem; text-align:center;">
+                    <span style="font-weight:600; color:var(--pool-primary);">our values</span>
+                    <div class="values-list">
+                        <span class="value-item"><i class="fas fa-star"></i> Integrity</span>
+                        <span class="value-item"><i class="fas fa-globe"></i> Stewardship</span>
+                        <span class="value-item"><i class="fas fa-handshake"></i> Collaboration</span>
+                        <span class="value-item"><i class="fas fa-lightbulb"></i> Innovation</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        BRAND NEW CALL-TO-ACTION SECTION — placed before footer
+        ============================================================ -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-badge">
+                    <i class="fas fa-heart"></i> join the movement
+                </div>
+                <h2>Make a <em>Wave</em> of Change</h2>
+                <p class="cta-desc">
+                    Every action counts. Whether you donate, volunteer, or simply spread the word —
+                    you become part of a global community fighting for a healthier, plastic‑free ocean.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn-cta-primary"><i class="fas fa-hand-holding-heart"></i> Donate Now</a>
+                    <a href="#" class="btn-cta-secondary"><i class="fas fa-users"></i> Volunteer</a>
+                    <a href="#" class="btn-cta-secondary"><i class="fas fa-envelope"></i> Stay Informed</a>
+                </div>
+                <div class="cta-stats-mini">
+                    <span class="stat-item"><i class="fas fa-globe-americas"></i> <strong>8+</strong> countries</span>
+                    <span class="stat-item"><i class="fas fa-user-friends"></i> <strong>4.2k</strong> volunteers</span>
+                    <span class="stat-item"><i class="fas fa-tree"></i> <strong>12k</strong> mangroves</span>
+                    <span class="stat-item"><i class="fas fa-fish"></i> <strong>6</strong> reefs restored</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="index.html" class="logo" style="margin-bottom: 1rem; display: inline-flex;">
+                    <span class="logo-text">Oceanix</span>
+                </a>
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Innovative marine conservation &amp; cleanup. Science, technology, and community working for a healthier ocean.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul><li><a href="#">Our Projects</a></li><li><a href="#">Get Involved</a></li><li><a href="#">Research</a></li><li><a href="#">Contact</a></li></ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul><li><a href="#">Ocean Literacy</a></li><li><a href="#">Cleanup Toolkit</a></li><li><a href="#">Terms of Service</a></li><li><a href="#">Privacy Policy</a></li></ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <ul><li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li><li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li><li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li></ul>
+            </div>
+        </div>
+        <div class="copyright">© 2026 Oceanix · Marine Conservation &amp; Ocean Cleanup. All rights reserved.</div>
+    </footer>
+
+    <script>
+        (function() {
+            const htmlEl = document.documentElement;
+            const mobileMenu = document.getElementById('mobileNavMenu');
+            const overlay = document.getElementById('mobileOverlay');
+            const hamburger = document.getElementById('hamburger');
+            const themeToggle = document.getElementById('themeToggle');
+            const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+            const rtlToggle = document.getElementById('rtlToggle');
+            const mobileRtlToggle = document.getElementById('mobileRtlToggle');
+            const rtlSpan = document.getElementById('rtlButtonText');
+            const mobileRtlSpan = document.getElementById('mobileRtlButtonText');
+
+            function closeMenu() {
+                if (!mobileMenu) return;
+                mobileMenu.classList.remove('open');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+                if (hamburger) hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+
+            function openMenu() {
+                if (!mobileMenu) return;
+                mobileMenu.classList.add('open');
+                if (overlay) overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                if (hamburger) hamburger.innerHTML = '<i class="fas fa-times"></i>';
+            }
+
+            function toggleMenu() {
+                if (mobileMenu.classList.contains('open')) closeMenu();
+                else openMenu();
+            }
+            if (hamburger) hamburger.addEventListener('click', toggleMenu);
+            if (overlay) overlay.addEventListener('click', closeMenu);
+
+            function setTheme(isDark) {
+                if (isDark) htmlEl.classList.add('dark');
+                else htmlEl.classList.remove('dark');
+                const moonIcon = document.querySelector('#themeToggle i');
+                if (moonIcon) moonIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+                const mobileIcon = document.querySelector('#mobileThemeToggle i');
+                if (mobileIcon) mobileIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+                const mobileToggleText = document.getElementById('mobileThemeToggle');
+                if (mobileToggleText) {
+                    mobileToggleText.innerHTML = isDark ? '<i class="fas fa-sun"></i> Light' :
+                        '<i class="fas fa-moon"></i> Dark';
+                }
+                localStorage.setItem('oceanixTheme', isDark ? 'dark' : 'light');
+            }
+
+            function toggleTheme() { setTheme(!htmlEl.classList.contains('dark')); }
+            if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+            if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
+
+            function setDirection(isRtl) {
+                if (isRtl) {
+                    htmlEl.setAttribute('dir', 'rtl');
+                    if (rtlSpan) rtlSpan.textContent = 'LTR';
+                    if (mobileRtlSpan) mobileRtlSpan.textContent = 'LTR';
+                } else {
+                    htmlEl.setAttribute('dir', 'ltr');
+                    if (rtlSpan) rtlSpan.textContent = 'RTL';
+                    if (mobileRtlSpan) mobileRtlSpan.textContent = 'RTL';
+                }
+                localStorage.setItem('oceanixDirection', isRtl ? 'rtl' : 'ltr');
+                closeMenu();
+            }
+
+            function toggleRTL() { setDirection(htmlEl.getAttribute('dir') !== 'rtl'); }
+            if (rtlToggle) rtlToggle.addEventListener('click', toggleRTL);
+            if (mobileRtlToggle) mobileRtlToggle.addEventListener('click', toggleRTL);
+
+            const savedTheme = localStorage.getItem('oceanixTheme');
+            setTheme(savedTheme === 'dark');
+            const savedDir = localStorage.getItem('oceanixDirection');
+            setDirection(savedDir === 'rtl');
+
+            if (mobileMenu) mobileMenu.classList.remove('open');
+            if (overlay) overlay.classList.remove('active');
+            document.body.style.overflow = '';
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 1280) closeMenu();
+            });
+        })();
+    </script>
+</body>
+</html>

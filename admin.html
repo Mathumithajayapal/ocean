@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover" />
+    <title>Oceanix · Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+        /* ----- reset & base (Oceanix theme) ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-body: #f5fafd;
+            --text-main: #0a2e3f;
+            --text-muted: #1a5a73;
+            --pool-primary: #006994;
+            --pool-dark: #004d73;
+            --pool-accent: #3a9bc7;
+            --pool-light: #e2f0f7;
+            --border-light: #c7e2ed;
+            --card-bg: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.96);
+            --sidebar-bg: #ffffff;
+            --sidebar-border: #c7e2ed;
+            --shadow: 0 4px 12px rgba(0, 30, 50, 0.08);
+            --nav-hover: rgba(0, 105, 148, 0.10);
+            --status-completed-bg: #d1fae5;
+            --status-completed-text: #065f46;
+            --status-pending-bg: #fef3c7;
+            --status-pending-text: #92400e;
+            --status-processing-bg: #dbeafe;
+            --status-processing-text: #1e40af;
+            --chart-grid: #e2f0f7;
+            --input-bg: #ffffff;
+
+            /* ----- EXACT LOGO GRADIENTS from index.html (light) ----- */
+            --logo-gradient-start: #006994;
+            --logo-gradient-end: #004d73;
+        }
+
+        body.dark-mode {
+            --bg-body: #080e12;
+            --text-main: #eaf2f7;
+            --text-muted: #aac7db;
+            --pool-primary: #3a9bc7;
+            --pool-dark: #1f7fa8;
+            --pool-accent: #6fb9db;
+            --pool-light: #0b141a;
+            --border-light: #1f313a;
+            --card-bg: #181e24;
+            --header-bg: rgba(0, 0, 0, 0.92);
+            --sidebar-bg: #12181e;
+            --sidebar-border: #1f313a;
+            --shadow: 0 4px 14px rgba(0, 0, 0, 0.7);
+            --nav-hover: rgba(58, 155, 199, 0.18);
+            --status-completed-bg: #065f46;
+            --status-completed-text: #86efac;
+            --status-pending-bg: #854d0e;
+            --status-pending-text: #fde047;
+            --status-processing-bg: #1e40af;
+            --status-processing-text: #93c5fd;
+            --chart-grid: #1f313a;
+            --input-bg: #1e1e1e;
+
+            /* ----- EXACT LOGO GRADIENTS from index.html (dark) ----- */
+            --logo-gradient-start: #3a9bc7;
+            --logo-gradient-end: #1f7fa8;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .logo-text,
+        .stat-value,
+        .brand-logo {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* ----- SIDEBAR (exact structure from reference) ----- */
+        .sidebar {
+            width: 280px;
+            background-color: var(--sidebar-bg);
+            color: var(--text-main);
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            overflow-y: auto;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            transform: translateX(0);
+            box-shadow: 2px 0 12px rgba(0, 0, 0, 0.05);
+            border-right: 1px solid var(--sidebar-border);
+        }
+
+        body.dark-mode .sidebar {
+            background: linear-gradient(180deg, #12181e 0%, #080e12 100%);
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                z-index: 1001;
+            }
+            .sidebar.mobile-open {
+                transform: translateX(0);
+            }
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+        .sidebar-overlay.active {
+            display: block;
+        }
+        body.sidebar-open {
+            overflow: hidden;
+        }
+
+        /* ============================================================
+                   SIDEBAR LOGO — EXACT MATCH to index.html .logo-text
+                   ============================================================ */
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--sidebar-border);
+        }
+
+        .brand-link {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            margin-bottom: 0.2rem;
+        }
+
+        /* EXACT clone of .logo-text from index.html */
+        .brand-logo {
+            font-size: 24px;
+            font-weight: 800;
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, var(--logo-gradient-start), var(--logo-gradient-end));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.2px;
+            display: inline-block;
+        }
+
+        .brand-logo-sub {
+            font-size: 0.65rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            display: block;
+            margin-top: 0.1rem;
+            -webkit-text-fill-color: var(--text-muted);
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            opacity: 0.75;
+        }
+
+        .nav-menu {
+            padding: 1.5rem 0;
+            list-style: none;
+        }
+
+        .nav-item {
+            list-style: none;
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0.75rem 1.5rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 0 12px 12px 0;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+        }
+
+        body.rtl-active .nav-link {
+            border-radius: 12px 0 0 12px;
+        }
+
+        .nav-link:hover {
+            background: var(--nav-hover);
+            color: var(--pool-primary);
+        }
+
+        .nav-link.active {
+            background: var(--pool-primary);
+            color: #ffffff;
+        }
+        .nav-link.active i {
+            color: #ffffff;
+        }
+
+        .nav-link i {
+            width: 24px;
+            font-size: 1.1rem;
+            color: var(--pool-primary);
+        }
+        .nav-link.active i {
+            color: #ffffff;
+        }
+
+        .sidebar-action-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0.75rem 1.5rem;
+            margin: 1rem 0 1.5rem 0;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            cursor: pointer;
+            border-top: 1px solid var(--sidebar-border);
+            font-size: 0.9rem;
+        }
+
+        .sidebar-action-btn:hover {
+            background: var(--nav-hover);
+            color: var(--pool-primary);
+        }
+
+        /* ----- MAIN CONTENT (exact structure) ----- */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 1.5rem 2rem;
+            transition: margin-left 0.3s ease;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                margin-left: 0;
+                padding: 1rem;
+                padding-top: 70px;
+            }
+        }
+
+        /* RTL Support */
+        body.rtl-active {
+            direction: rtl;
+        }
+
+        body.rtl-active .sidebar {
+            left: auto;
+            right: 0;
+            border-right: none;
+            border-left: 1px solid var(--sidebar-border);
+        }
+
+        body.rtl-active .main-content {
+            margin-left: 0;
+            margin-right: 280px;
+        }
+
+        @media (max-width: 768px) {
+            body.rtl-active .main-content {
+                margin-right: 0;
+            }
+            body.rtl-active .sidebar {
+                transform: translateX(100%);
+            }
+            body.rtl-active .sidebar.mobile-open {
+                transform: translateX(0);
+            }
+            body.rtl-active .menu-toggle {
+                left: auto;
+                right: 1rem;
+            }
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1100;
+            background: var(--pool-primary);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.2s;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-toggle:hover {
+            transform: scale(1.05);
+            background: var(--pool-dark);
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+        }
+
+        /* Page Container */
+        .page-container {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .page-container.active-page {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Top Header */
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .top-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+            }
+        }
+
+        .page-title h1 {
+            font-size: 2rem;
+            color: var(--text-main);
+            letter-spacing: 0.5px;
+        }
+
+        .page-title p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+            font-style: italic;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .header-actions {
+                width: 100%;
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 30px;
+            padding: 0.6rem 1.2rem;
+            gap: 0.5rem;
+            flex: 1;
+            min-width: 180px;
+            transition: border-color 0.3s;
+        }
+
+        .search-bar:focus-within {
+            border-color: var(--pool-primary);
+        }
+
+        .search-bar input {
+            border: none;
+            outline: none;
+            font-size: 0.9rem;
+            width: 200px;
+            background: transparent;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+        }
+
+        .toggle-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .icon-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid var(--border-light);
+            background: var(--card-bg);
+            color: var(--text-muted);
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .text-btn {
+            font-size: 12px;
+            font-weight: 600;
+            width: auto;
+            border-radius: 40px;
+            padding: 0 16px;
+            letter-spacing: 1px;
+        }
+
+        .icon-btn:hover {
+            background: var(--pool-primary);
+            color: #fff;
+            border-color: var(--pool-primary);
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            padding-left: 0.5rem;
+            border-left: 1px solid var(--border-light);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--pool-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.3s;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--pool-primary);
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(0, 105, 148, 0.10);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .stat-icon i {
+            font-size: 1.4rem;
+            color: var(--pool-primary);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            color: var(--text-main);
+            margin-bottom: 0.2rem;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Charts Section */
+        .charts-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .charts-section {
+                grid-template-columns: 1.5fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .charts-section {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+        }
+
+        .chart-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 0.8rem;
+        }
+
+        .card-header h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-main);
+            letter-spacing: 0.5px;
+        }
+
+        /* Top Items (Projects / Services) */
+        .top-item {
+            margin-bottom: 1.2rem;
+            width: 100%;
+        }
+
+        .top-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.4rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .top-item-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .top-item-value {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--pool-primary);
+        }
+
+        .progress-bar-container {
+            background: var(--pool-light);
+            border-radius: 10px;
+            height: 4px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            background: var(--pool-primary);
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        /* Tables */
+        .data-table {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-light);
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        @media (max-width: 640px) {
+            table {
+                min-width: 100%;
+            }
+            th,
+            td {
+                padding: 0.8rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        th,
+        td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        th {
+            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .status-completed {
+            background: var(--status-completed-bg);
+            color: var(--status-completed-text);
+        }
+        .status-pending {
+            background: var(--status-pending-bg);
+            color: var(--status-pending-text);
+        }
+        .status-processing {
+            background: var(--status-processing-bg);
+            color: var(--status-processing-text);
+        }
+
+        /* Projects / Sites Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 640px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+            border-color: var(--pool-primary);
+        }
+
+        .project-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            background-color: var(--pool-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .project-info {
+            padding: 1.2rem;
+        }
+
+        .project-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .project-meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .project-meta span {
+            color: var(--pool-primary);
+            font-weight: 600;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 640px) {
+            .quick-actions {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+        }
+
+        .action-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            padding: 1rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            font-weight: 500;
+            color: var(--pool-primary);
+            transition: all 0.3s;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+        }
+
+        .action-btn:hover {
+            background: var(--pool-primary);
+            color: #ffffff;
+            border-color: var(--pool-primary);
+        }
+
+        /* Activity Feed */
+        .activity-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 105, 148, 0.10);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 1px solid rgba(0, 105, 148, 0.15);
+        }
+
+        .activity-icon i {
+            color: var(--pool-primary);
+        }
+
+        .activity-content p {
+            font-weight: 500;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .activity-time {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            display: block;
+            margin-top: 0.3rem;
+            font-style: italic;
+        }
+
+        /* Analytics Grid */
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            .analytics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Settings Form */
+        .settings-form {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 2rem;
+            border: 1px solid var(--border-light);
+            max-width: 800px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--border-light);
+            border-radius: 4px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+            background: var(--input-bg);
+            color: var(--text-main);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--pool-primary);
+        }
+
+        .save-btn {
+            background: var(--pool-primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            transition: background 0.3s;
+        }
+
+        .save-btn:hover {
+            background: var(--pool-dark);
+        }
+
+        @media (max-width: 640px) {
+            .save-btn {
+                width: 100%;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--pool-light);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--pool-primary);
+            border-radius: 3px;
+        }
+
+        .chart-card canvas {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Oceanix custom badge */
+        .ocean-badge {
+            display: inline-block;
+            background: rgba(0, 105, 148, 0.12);
+            color: var(--pool-primary);
+            font-size: 0.6rem;
+            font-weight: 600;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: 1px solid rgba(0, 105, 148, 0.15);
+        }
+        /* Hide search bar on mobile */
+@media (max-width: 768px) {
+    .search-bar {
+        display: none !important;
+    }
+}
+@media (max-width: 768px) {
+    .header-actions {
+        justify-content: flex-end;
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .user-profile {
+        border-left: none;
+        padding-left: 0;
+    }
+}
+/* Hide hamburger when sidebar is open (Mobile) */
+@media (max-width: 768px) {
+    body.sidebar-open .menu-toggle {
+        display: none !important;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <button class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="dashboard-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <!-- EXACT LOGO from index.html — same markup + gradient -->
+                <a href="index.html" class="brand-link">
+                    <span class="brand-logo">Oceanix</span>
+                </a>
+                <span class="brand-logo-sub">marine conservation · admin</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item" data-page="dashboard"><a class="nav-link active"><i class="fas fa-chart-line"></i><span>Overview</span></a></li>
+                <li class="nav-item" data-page="operations"><a class="nav-link"><i class="fas fa-ship"></i><span>Operations</span></a></li>
+                <li class="nav-item" data-page="sites"><a class="nav-link"><i class="fas fa-tree"></i><span>Conservation Sites</span></a></li>
+                <li class="nav-item" data-page="donors"><a class="nav-link"><i class="fas fa-hand-holding-heart"></i><span>Donors &amp; Partners</span></a></li>
+                <li class="nav-item" data-page="analytics"><a class="nav-link"><i class="fas fa-chart-pie"></i><span>Impact Analytics</span></a></li>
+                <li class="nav-item" data-page="settings"><a class="nav-link"><i class="fas fa-sliders-h"></i><span>System Settings</span></a></li>
+            </ul>
+            <a href="index.html" class="sidebar-action-btn" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </aside>
+
+        <main class="main-content" id="mainContent">
+            <div id="dashboard-page" class="page-container active-page"></div>
+            <div id="operations-page" class="page-container"></div>
+            <div id="sites-page" class="page-container"></div>
+            <div id="donors-page" class="page-container"></div>
+            <div id="analytics-page" class="page-container"></div>
+            <div id="settings-page" class="page-container"></div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // ---------- DATA (Oceanix themed) ----------
+        const operationsData = [{
+            id: '#OC-1042',
+            site: 'Bali Coral Reef',
+            date: '2026-06-15',
+            activity: 'Coral planting',
+            volunteers: 28,
+            status: 'Processing'
+        }, {
+            id: '#OC-1038',
+            site: 'Maldives Mangroves',
+            date: '2026-05-20',
+            activity: 'Mangrove restoration',
+            volunteers: 45,
+            status: 'Completed'
+        }, {
+            id: '#OC-1021',
+            site: 'Great Barrier Reef',
+            date: '2026-04-10',
+            activity: 'Microplastic survey',
+            volunteers: 12,
+            status: 'Completed'
+        }, {
+            id: '#OC-1055',
+            site: 'Seychelles Coastal Cleanup',
+            date: '2026-06-20',
+            activity: 'Beach & water cleanup',
+            volunteers: 67,
+            status: 'Pending'
+        }, {
+            id: '#OC-0988',
+            site: 'Azores Marine Reserve',
+            date: '2026-01-12',
+            activity: 'Species monitoring',
+            volunteers: 8,
+            status: 'Completed'
+        }];
+
+        const sitesData = [{
+            id: 1,
+            name: 'Bali Coral Nursery',
+            status: 'Active',
+            volunteers: 120,
+            image: 'image/coral restoration (1).jpg'
+        }, {
+            id: 2,
+            name: 'Maldives Mangrove Reserve',
+            status: 'Restoring',
+            volunteers: 84,
+            image: 'image/ocean animal (12).jpg'
+        }, {
+            id: 3,
+            name: 'Great Barrier Reef Station',
+            status: 'Monitoring',
+            volunteers: 56,
+            image: 'image/ocean section (4).jpg'
+        }, {
+            id: 4,
+            name: 'Seychelles Cleanup Hub',
+            status: 'Active',
+            volunteers: 210,
+            image: 'image/ocean animal (11).jpg'
+        }];
+
+        const donorsData = [{
+            name: 'Blue Planet Foundation',
+            email: 'grants@blueplanet.org',
+            donations: 12,
+            total: 154000.00,
+            tier: 'Platinum'
+        }, {
+            name: 'Ocean Legacy Trust',
+            email: 'contact@oceanlegacy.com',
+            donations: 34,
+            total: 428500.00,
+            tier: 'Platinum'
+        }, {
+            name: 'Sea Shepherd Collective',
+            email: 'info@seashepherd.org',
+            donations: 2,
+            total: 35000.00,
+            tier: 'Gold'
+        }, {
+            name: 'Coastal Community Fund',
+            email: 'community@coastalfund.org',
+            donations: 1,
+            total: 6500.00,
+            tier: 'Silver'
+        }, {
+            name: 'Marine Research Institute',
+            email: 'research@mri.edu',
+            donations: 5,
+            total: 44500.00,
+            tier: 'Gold'
+        }];
+
+        const topInitiatives = [
+            { name: 'Coral Reef Restoration', value: '84 sites', percent: 72 },
+            { name: 'Mangrove Reforestation', value: '45 sites', percent: 48 },
+            { name: 'Plastic Cleanup Drives', value: '28 campaigns', percent: 30 },
+            { name: 'Species Monitoring', value: '15 projects', percent: 18 }
+        ];
+
+        const activitiesFeed = [
+            { icon: 'water', text: 'New cleanup operation #OC-1056 launched in Seychelles with 67 volunteers.', time: '10 minutes ago' },
+            { icon: 'leaf', text: 'Mangrove planting milestone: 1,200 new saplings in Maldives.', time: '2 hours ago' },
+            { icon: 'exclamation-triangle', text: 'Alert: Coral bleaching detected at Great Barrier Reef Station 4.',
+                time: 'Yesterday, 4:15 PM' },
+            { icon: 'truck', text: 'Restoration equipment shipment arrived at Bali Coral Nursery.', time: 'Yesterday, 11:30 AM' }
+        ];
+
+        let salesChartInstance = null;
+
+        // Toggle Functions
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('oceanix_admin_darkMode', document.body.classList.contains('dark-mode'));
+            const darkIcon = document.getElementById('darkModeIconBtn');
+            if (darkIcon) darkIcon.innerHTML = document.body.classList.contains('dark-mode') ? '<i class="fas fa-sun"></i>' :
+                '<i class="fas fa-moon"></i>';
+        }
+
+        function toggleRTL() {
+            document.body.classList.toggle('rtl-active');
+            localStorage.setItem('oceanix_admin_rtl', document.body.classList.contains('rtl-active'));
+            const rtlBtn = document.getElementById('rtlIconBtn');
+            if (rtlBtn) rtlBtn.innerHTML = document.body.classList.contains('rtl-active') ? 'RTL' : 'LTR';
+        }
+
+        function closeSidebar() {
+            sidebar.classList.remove('mobile-open');
+            overlay.classList.remove('active');
+            document.body.classList.remove('sidebar-open');
+        }
+
+        function openSidebar() {
+            sidebar.classList.add('mobile-open');
+            overlay.classList.add('active');
+            document.body.classList.add('sidebar-open');
+        }
+
+        window.showPage = function(pageId) {
+            const pages = ['dashboard', 'operations', 'sites', 'donors', 'analytics', 'settings'];
+            pages.forEach(p => {
+                const el = document.getElementById(`${p}-page`);
+                if (el) el.classList.remove('active-page');
+            });
+            const target = document.getElementById(`${pageId}-page`);
+            if (target) target.classList.add('active-page');
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            const navItem = document.querySelector(`[data-page="${pageId}"] .nav-link`);
+            if (navItem) navItem.classList.add('active');
+            if (window.innerWidth <= 768) closeSidebar();
+        };
+
+        // Render Functions
+        function renderDashboard() {
+            const dashboardDiv = document.getElementById('dashboard-page');
+            dashboardDiv.innerHTML = `
+            <div class="top-header">
+              <div class="page-title"><h1>Conservation Overview</h1><p>Global marine restoration metrics.</p></div>
+              <div class="header-actions">
+                <div class="search-bar"><i class="fas fa-search" style="color:var(--text-muted)"></i><input type="text" placeholder="Search sites, operations..."></div>
+                <div class="toggle-buttons">
+                  <button class="icon-btn" id="darkModeIconBtn"><i class="fas fa-moon"></i></button>
+                  <button class="icon-btn text-btn" id="rtlIconBtn">LTR</button>
+                </div>
+                <div class="user-profile"><div class="user-avatar"><i class="fas fa-fish"></i></div><span style="font-weight:600;">Admin</span></div>
+              </div>
+            </div>
+            <div class="stats-grid">
+              <div class="stat-card"><div class="stat-icon"><i class="fas fa-ship"></i></div><div class="stat-value">142</div><div class="stat-label">Active Operations</div></div>
+              <div class="stat-card"><div class="stat-icon"><i class="fas fa-hand-holding-heart"></i></div><div class="stat-value">$284.5k</div><div class="stat-label">Funds Raised YTD</div></div>
+              <div class="stat-card"><div class="stat-icon"><i class="fas fa-users"></i></div><div class="stat-value">4,280</div><div class="stat-label">Total Volunteers</div></div>
+              <div class="stat-card"><div class="stat-icon"><i class="fas fa-tree"></i></div><div class="stat-value">12.4k</div><div class="stat-label">Mangroves Planted</div></div>
+            </div>
+            <div class="quick-actions">
+              <button class="action-btn" id="addSiteQuickBtn"><i class="fas fa-plus-circle"></i> Register New Site</button>
+              <button class="action-btn" onclick="showPage('operations');"><i class="fas fa-plus-square"></i> Launch Operation</button>
+              <button class="action-btn" id="donorQuickBtn"><i class="fas fa-envelope"></i> Contact Donors</button>
+            </div>
+            <div class="charts-section">
+              <div class="chart-card"><div class="card-header"><h3>Monthly Restoration Impact</h3><span style="color:var(--pool-primary); font-size:0.8rem; font-style:italic;">Last 6 Months</span></div><div style="width:100%; height:220px; position:relative;"><canvas id="salesChart"></canvas></div></div>
+              <div class="chart-card"><div class="card-header"><h3>Top Initiatives</h3></div><div id="topInitiativesList"></div></div>
+            </div>
+            <div class="data-table"><div class="card-header"><h3>Recent Conservation Operations</h3><a href="#" style="color:var(--pool-primary); font-size:0.8rem; font-weight:600; text-transform:uppercase; letter-spacing:1px;" onclick="showPage('operations'); return false;">View All →</a></div><div id="recentOpsTable"></div></div>
+            <div class="chart-card"><div class="card-header"><h3>System Activity</h3></div><div id="activityFeed"></div></div>
+          `;
+
+            document.getElementById('topInitiativesList').innerHTML = topInitiatives.map(p => `
+            <div class="top-item">
+              <div class="top-item-header"><span class="top-item-name">${p.name}</span><span class="top-item-value">${p.value}</span></div>
+              <div class="progress-bar-container"><div class="progress-bar-fill" style="width: ${p.percent}%;"></div></div>
+            </div>
+          `).join('');
+
+            document.getElementById('recentOpsTable').innerHTML = `
+            <table>
+              <thead><tr><th>Operation ID</th><th>Site</th><th>Activity</th><th>Volunteers</th><th>Status</th></tr></thead>
+              <tbody>${operationsData.slice(0,4).map(o => `
+                <tr>
+                  <td><strong style="color:var(--text-main)">${o.id}</strong></td>
+                  <td>${o.site}</td>
+                  <td>${o.activity}</td>
+                  <td>${o.volunteers}</td>
+                  <td><span class="status-badge status-${o.status.toLowerCase()}">${o.status}</span></td>
+                </tr>
+              `).join('')}</tbody>
+            </table>
+          `;
+
+            document.getElementById('activityFeed').innerHTML = activitiesFeed.map(a => `
+            <div class="activity-item">
+              <div class="activity-icon"><i class="fas fa-${a.icon}"></i></div>
+              <div class="activity-content"><p>${a.text}</p><span class="activity-time">${a.time}</span></div>
+            </div>
+          `).join('');
+
+            const salesCtx = document.getElementById('salesChart')?.getContext('2d');
+            if (salesCtx) {
+                if (salesChartInstance) salesChartInstance.destroy();
+                salesChartInstance = new Chart(salesCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                        datasets: [{
+                            label: 'Restoration Impact (acres)',
+                            data: [42, 38, 51, 49, 55, 62],
+                            borderColor: '#006994',
+                            backgroundColor: 'rgba(0,105,148,0.12)',
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false }
+                });
+            }
+
+            document.getElementById('darkModeIconBtn')?.addEventListener('click', toggleDarkMode);
+            document.getElementById('rtlIconBtn')?.addEventListener('click', toggleRTL);
+            document.getElementById('addSiteQuickBtn')?.addEventListener('click', () => alert('Site registration form opening...'));
+            document.getElementById('donorQuickBtn')?.addEventListener('click', () => alert('Donor communication panel opening...'));
+        }
+
+        function renderOperations() {
+            const totalVol = operationsData.reduce((s, o) => s + o.volunteers, 0);
+            const pending = operationsData.filter(o => o.status === 'Pending').length;
+            const processing = operationsData.filter(o => o.status === 'Processing').length;
+            const completed = operationsData.filter(o => o.status === 'Completed').length;
+            document.getElementById('operations-page').innerHTML = `
+            <div class="top-header"><div class="page-title"><h1>Conservation Operations</h1><p>Manage all marine restoration activities.</p></div><div class="header-actions"><div class="search-bar"><i class="fas fa-search" style="color:var(--text-muted)"></i><input type="text" placeholder="Search operation ID..."></div></div></div>
+            <div class="stats-grid">
+              <div class="stat-card"><div class="stat-icon"><i class="fas fa-clock"></i></div><div class="stat-value">${pending}</div><div class="stat-label">Awaiting Launch</div></div>
+              <div class="stat-card"><div class="stat-icon"><i class="fas fa-tools"></i></div><div class="stat-value">${processing}</div><div class="stat-label">In Progress</div></div>
+              <div class="stat-card"><div class="stat-icon"><i class="fas fa-check-circle"></i></div><div class="stat-value">${completed}</div><div class="stat-label">Completed</div></div>
+              <div class="stat-card"><div class="stat-icon"><i class="fas fa-users"></i></div><div class="stat-value">${totalVol}</div><div class="stat-label">Total Volunteers Mobilized</div></div>
+            </div>
+            <div class="data-table">
+              <table>
+                <thead><tr><th>Operation ID</th><th>Site</th><th>Start Date</th><th>Activity</th><th>Volunteers</th><th>Status</th></tr></thead>
+                <tbody>${operationsData.map(o => `
+                  <tr>
+                    <td><strong style="color:var(--text-main)">${o.id}</strong></td>
+                    <td>${o.site}</td>
+                    <td>${o.date}</td>
+                    <td>${o.activity}</td>
+                    <td>${o.volunteers}</td>
+                    <td><span class="status-badge status-${o.status.toLowerCase()}">${o.status}</span></td>
+                  </tr>
+                `).join('')}</tbody>
+              </table>
+            </div>
+          `;
+        }
+
+        function renderSites() {
+            document.getElementById('sites-page').innerHTML = `
+            <div class="top-header"><div class="page-title"><h1>Conservation Sites</h1><p>Manage marine protected areas and restoration hubs.</p></div><div class="header-actions"><button class="action-btn" id="addSiteBtn" style="width:auto;"><i class="fas fa-plus"></i> Register Site</button></div></div>
+            <div class="projects-grid" id="sitesGrid"></div>
+          `;
+            const grid = document.getElementById('sitesGrid');
+            grid.innerHTML = sitesData.map(s => `
+            <div class="project-card">
+              <div class="project-image" style="background-image:url('${s.image}');"></div>
+              <div class="project-info">
+                <div class="project-title">${s.name}</div>
+                <div style="margin-top:0.25rem;"><span class="ocean-badge">${s.status}</span></div>
+                <div class="project-meta">Volunteers: <span>${s.volunteers}</span></div>
+              </div>
+            </div>
+          `).join('');
+            document.getElementById('addSiteBtn')?.addEventListener('click', () => alert('Site registration form opening...'));
+        }
+
+        function renderDonors() {
+            const total = donorsData.length,
+                plat = donorsData.filter(d => d.tier === 'Platinum').length,
+                gold = donorsData.filter(d => d.tier === 'Gold').length;
+            const totalFunds = donorsData.reduce((s, d) => s + d.total, 0);
+            document.getElementById('donors-page').innerHTML = `
+            <div class="top-header"><div class="page-title"><h1>Donors &amp; Partners</h1><p>Manage philanthropic and institutional support.</p></div></div>
+            <div class="stats-grid">
+              <div class="stat-card"><div class="stat-icon"><i class="fas fa-hand-holding-heart"></i></div><div class="stat-value">${total}</div><div class="stat-label">Total Donors</div></div>
+              <div class="stat-card"><div class="stat-icon"><i class="fas fa-star"></i></div><div class="stat-value">${plat}</div><div class="stat-label">Platinum Tier</div></div>
+              <div class="stat-card"><div class="stat-icon"><i class="fas fa-gem"></i></div><div class="stat-value">${gold}</div><div class="stat-label">Gold Tier</div></div>
+              <div class="stat-card"><div class="stat-icon"><i class="fas fa-dollar-sign"></i></div><div class="stat-value">$${(totalFunds/1000).toFixed(1)}k</div><div class="stat-label">Total Contributed</div></div>
+            </div>
+            <div class="data-table">
+              <table>
+                <thead><tr><th>Donor / Partner</th><th>Email</th><th>Contributions</th><th>Total Given</th><th>Tier</th></tr></thead>
+                <tbody>${donorsData.map(d => `
+                  <tr>
+                    <td><strong style="color:var(--text-main)">${d.name}</strong></td>
+                    <td>${d.email}</td>
+                    <td>${d.donations}</td>
+                    <td>$${d.total.toFixed(2)}</td>
+                    <td><span class="status-badge ${d.tier === 'Platinum' ? 'status-completed' : 'status-processing'}">${d.tier}</span></td>
+                  </tr>
+                `).join('')}</tbody>
+              </table>
+            </div>
+          `;
+        }
+
+        function renderAnalytics() {
+            document.getElementById('analytics-page').innerHTML = `
+            <div class="top-header"><div class="page-title"><h1>Impact Analytics</h1><p>Measure conservation outcomes and reach.</p></div></div>
+            <div class="analytics-grid">
+              <div class="chart-card"><div class="card-header"><h3>Quarterly Impact Growth</h3></div><div style="height:220px;"><canvas id="impactChart"></canvas></div></div>
+              <div class="chart-card"><div class="card-header"><h3>Impact by Category</h3></div><div style="height:220px;"><canvas id="categoryChart"></canvas></div></div>
+            </div>
+            <div class="data-table"><div class="card-header"><h3>Top Impact Drivers</h3></div>
+              <table>
+                <thead><tr><th>Initiative</th><th>Projects</th><th>Total Impact (acres)</th><th>Growth</th></tr></thead>
+                <tbody>${topInitiatives.map((p, i) => `
+                  <tr>
+                    <td><strong style="color:var(--text-main); font-family:'Playfair Display', serif;">${p.name}</strong></td>
+                    <td>${p.value}</td>
+                    <td>${(2500 - (i*400)).toLocaleString()}</td>
+                    <td style="color:#10b981;">+${Math.floor(Math.random() * 15) + 5}%</td>
+                  </tr>
+                `).join('')}</tbody>
+              </table>
+            </div>
+          `;
+
+            const impCtx = document.getElementById('impactChart')?.getContext('2d');
+            if (impCtx) new Chart(impCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+                    datasets: [{ label: 'Acres Restored', data: [120, 145, 110, 185], backgroundColor: '#006994' }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+
+            const catCtx = document.getElementById('categoryChart')?.getContext('2d');
+            if (catCtx) new Chart(catCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Coral Restoration', 'Mangroves', 'Cleanup', 'Research'],
+                    datasets: [{ data: [55, 25, 15, 5], backgroundColor: ['#006994', '#3a9bc7', '#6fb9db', '#e2f0f7'],
+                        borderColor: 'transparent' }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+        }
+
+        function renderSettings() {
+            document.getElementById('settings-page').innerHTML = `
+            <div class="top-header"><div class="page-title"><h1>System Settings</h1><p>Configure conservation platform and team access.</p></div></div>
+            <div class="settings-form">
+              <h3 style="margin-bottom:1.5rem; font-family:'Playfair Display', serif; font-size:1.5rem;">Organization Profile</h3>
+              <div class="form-group"><label>Organization Name</label><input type="text" id="orgName" value="Oceanix Marine Conservation"></div>
+              <div class="form-group"><label>Primary Contact Email</label><input type="email" id="orgEmail" value="admin@oceanix.org"></div>
+              <div class="form-group"><label>Base Currency</label><input type="text" id="currency" placeholder="e.g. USD, EUR, GBP" value="USD ($)"></div>
+              <div class="form-group"><label>Default Volunteer Capacity</label><input type="text" id="capacity" value="100 per site"></div>
+              <button class="save-btn" onclick="alert('Settings saved successfully.')">Save Changes</button>
+            </div>
+          `;
+        }
+
+        // Navigation
+        document.querySelectorAll('.nav-item').forEach(item => item.addEventListener('click', () => showPage(item.getAttribute(
+            'data-page'))));
+
+        // Mobile sidebar controls
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        menuToggle?.addEventListener('click', () => sidebar.classList.contains('mobile-open') ? closeSidebar() :
+            openSidebar());
+        overlay?.addEventListener('click', closeSidebar);
+
+        // Load saved preferences
+        if (localStorage.getItem('oceanix_admin_darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+            const darkIcon = document.getElementById('darkModeIconBtn');
+            if (darkIcon) darkIcon.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            const darkIcon = document.getElementById('darkModeIconBtn');
+            if (darkIcon) darkIcon.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+        if (localStorage.getItem('oceanix_admin_rtl') === 'true') document.body.classList.add('rtl-active');
+
+        // Initialize all pages
+        renderDashboard();
+        renderOperations();
+        renderSites();
+        renderDonors();
+        renderAnalytics();
+        renderSettings();
+
+        // Re-attach global toggle listeners
+        setTimeout(() => {
+            document.getElementById('darkModeIconBtn')?.addEventListener('click', toggleDarkMode);
+            document.getElementById('rtlIconBtn')?.addEventListener('click', toggleRTL);
+        }, 100);
+    </script>
+</body>
+</html>
