@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Oceanix · Donate for the Ocean</title>
+   <link rel="icon" type="image/jpeg" href="image/seekeper (1).jpg">  
+
 
     <!-- Google Fonts + Font Awesome 6 -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -349,7 +351,7 @@
             overflow: hidden;
             isolation: isolate;
             background: #001a2b;
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBkPSJNMjAgMzBhMTAgMTAgMCAwIDEgMC0yMCAxMCAxMCAwIDAgMSAwIDIweiIgZmlsbD0iIzAwNjU4MCIgb3BhY2l0eT0iMC4yIi8+PC9zdmc+');
+            background-image: url('image/seekeper (1).jpg');
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
@@ -545,7 +547,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 3rem 1.5rem 4rem;
+            padding: 5rem 1.5rem;
             background: radial-gradient(circle at 10% 30%, rgba(0, 105, 148, 0.05), transparent);
         }
         .dark .main-content {
@@ -555,7 +557,7 @@
         .section-block {
             max-width: 1200px;
             width: 100%;
-            margin: 0 auto 4rem;
+            margin: 5rem auto;
         }
         .section-title {
             font-family: 'Playfair Display', serif;
@@ -677,13 +679,13 @@
         .donate-container {
             max-width: 720px;
             width: 100%;
+            margin: 5rem auto;
             background: var(--card-bg);
             border-radius: 2.5rem;
             padding: 2.5rem 2rem;
             border: 1px solid var(--border-light);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
             transition: background 0.2s, border 0.2s;
-            margin-bottom: 2rem;
         }
         .dark .donate-container {
             background: #141e26;
@@ -798,8 +800,7 @@
         .footer {
             background-color: var(--bg-body);
             border-top: 1px solid var(--footer-border);
-            padding: 3rem 1.5rem 2rem;
-            margin-top: auto;
+            padding: 5rem 1.5rem 3rem;
         }
         .footer-grid {
             max-width: 1280px;
@@ -863,9 +864,9 @@
         .donation-form {
             max-width: 850px;
             width: 100%;
-            margin: 2rem auto;
+            margin: 5rem auto;
             background: var(--card-bg);
-            padding: 40px;
+            padding: 2.5rem;
             border-radius: 25px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
             border: 1px solid var(--border-light);
@@ -1075,7 +1076,7 @@
     <!-- ─── HEADER ─── -->
     <header class="site-header">
         <div class="nav-container">
-            <a href="#" class="logo"><span class="logo-text">Oceanix</span></a>
+            <a href="index.html" class="logo"><span class="logo-text">Oceanix</span></a>
 
             <div class="desktop-nav">
                 <div class="dropdown">
@@ -1125,10 +1126,9 @@
             <li><a href="donate.html" class="mobile-link active">Donate</a></li>
             <li><a href="faq.html" class="mobile-link">FAQ</a></li>
             <li><a href="contact.html" class="mobile-link">Contact</a></li>
-            <li><a href="#" class="mobile-link">Dashboard</a>
-                <ul style="padding-left: 1.5rem; list-style: none;">
-                    <li><a href="user.html" class="mobile-link" style="margin-top: 0.5rem;">User</a></li>
-                    <li><a href="admin.html" class="mobile-link">Admin</a></li>
+                
+           <li><a href="user.html" class="mobile-link" >User Dashboard</a></li>
+           <li><a href="admin.html" class="mobile-link">Admin Dashboard</a></li>
                 </ul>
             </li>
             <li><a href="signin.html" class="mobile-link">Login</a></li>
@@ -1362,7 +1362,7 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <a href="#" class="logo" style="margin-bottom: 1rem; display: inline-flex;">
-                    <span class="logo-text">Oceanix</span>
+                    <i class="fa-solid fa-sailboat logo-icon"></i> <span class="logo-text">Oceanix</span>
                 </a>
                 <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Innovative marine conservation &amp; cleanup. Science, technology, and community working for a healthier ocean.</p>
             </div>

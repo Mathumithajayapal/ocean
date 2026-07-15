@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover" />
     <title>Oceanix · Admin</title>
+    <link rel="icon" type="image/jpeg" href="image/seekeper (1).jpg">  
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
@@ -980,6 +982,16 @@
         display: none !important;
     }
 }
+.logo-icon {
+    font-size: 28px;
+    color: var(--logo-gradient-start);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.logo:hover .logo-icon {
+    color: var(--logo-gradient-end);
+    transform: scale(1.05);
+}
     </style>
 </head>
 <body>
@@ -994,6 +1006,7 @@
             <div class="sidebar-header">
                 <!-- EXACT LOGO from index.html — same markup + gradient -->
                 <a href="index.html" class="brand-link">
+                  <i class="fa-solid fa-sailboat logo-icon"></i>
                     <span class="brand-logo">Oceanix</span>
                 </a>
                 <span class="brand-logo-sub">marine conservation · admin</span>

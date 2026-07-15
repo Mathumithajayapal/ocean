@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Oceanix · Home 2 – Marine Conservation</title>
+    <link rel="icon" type="image/jpeg" href="image/seekeper (1).jpg">  
+
 
     <!-- Google Fonts + Font Awesome 6 -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -20,6 +22,13 @@
         }
 
         :root {
+            /* ── Spacing & typography tokens ── */
+            --text-line-height: 1.8;
+            --text-letter-spacing: 0.01em;
+            --text-word-spacing: 0.02em;
+            --text-paragraph-gap: 0.6rem;
+
+            /* ── Existing tokens ── */
             --bg-body: #ffffff;
             --text-body: #0a2e3f;
             --header-bg: rgba(255, 255, 255, 0.96);
@@ -87,6 +96,42 @@
             flex-direction: column;
             transition: background-color 0.25s ease, color 0.25s ease;
             overflow-x: hidden;
+
+            /* ── Apply global text spacing ── */
+            line-height: var(--text-line-height);
+            letter-spacing: var(--text-letter-spacing);
+            word-spacing: var(--text-word-spacing);
+        }
+
+        /* ── Consistent spacing for all text blocks ── */
+        p,
+        .section-sub,
+        .hero-content p,
+        .card-service p,
+        .story-card p,
+        .testimonial-card blockquote,
+        .footer-col p,
+        .newsletter-box p,
+        .chapter-card .chapter-location,
+        .chapter-card .chapter-name,
+        .grid-2col p,
+        .hero-stats .hs-label,
+        .stat-item .stat-label,
+        .story-card .story-tag {
+            line-height: var(--text-line-height);
+            letter-spacing: var(--text-letter-spacing);
+            word-spacing: var(--text-word-spacing);
+            margin-bottom: var(--text-paragraph-gap);
+        }
+
+        /* ── Extra word‑spacing for longer sentences ── */
+        .section-sub,
+        .hero-content p,
+        .card-service p,
+        .story-card p,
+        .testimonial-card blockquote,
+        .grid-2col p {
+            word-spacing: 0.04em;
         }
 
         /* ─── HEADER ─── */
@@ -364,7 +409,6 @@
             max-width: 700px;
             margin: 0 auto 2.5rem auto;
             font-size: 1.1rem;
-            line-height: 1.6;
             text-align: center;
         }
         .text-center {
@@ -408,11 +452,11 @@
 
         /* ─── 1. HERO BANNER — WITH BACKGROUND IMAGE ─── */
         .hero-banner {
-            min-height: 85vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 3rem 1.5rem;
+            padding: 5rem 1.5rem;
             margin: 0;
             max-width: 100%;
             position: relative;
@@ -478,7 +522,6 @@
 
         .hero-content p {
             font-size: 1.2rem;
-            line-height: 1.7;
             color: rgba(255, 255, 255, 0.88);
             max-width: 620px;
             margin: 0 auto 2rem;
@@ -628,6 +671,10 @@
             font-weight: 700;
             margin-bottom: 0.5rem;
         }
+        .card-service p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
 
         /* ─── 5. SUCCESS STORIES ─── */
         .stories-grid {
@@ -684,10 +731,9 @@
         .story-card p {
             color: var(--text-muted);
             font-size: 0.9rem;
-            line-height: 1.6;
         }
 
-        /* ─── 6. GLOBAL CHAPTERS — FIXED: equal height & bottom-aligned ─── */
+        /* ─── 6. GLOBAL CHAPTERS — equal height & bottom-aligned ─── */
         .chapters-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -702,8 +748,6 @@
             border: 1px solid var(--border-light);
             box-shadow: var(--shadow-sm);
             transition: all 0.2s;
-
-            /* ── FLEX COLUMN, equal height ── */
             display: flex;
             flex-direction: column;
             height: 100%;
@@ -715,7 +759,6 @@
             box-shadow: var(--shadow-md);
         }
 
-        /* image: fixed size, never shrinks */
         .chapter-card .chapter-img {
             width: 100%;
             height: 140px;
@@ -733,17 +776,14 @@
             display: block;
         }
 
-        /* ── content wrapper: takes all remaining space ── */
         .chapter-card .chapter-body {
             flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            /* name at top, location at bottom */
             padding: 0.25rem 0 0.5rem 0;
         }
 
-        /* name: stays at top, doesn't shrink */
         .chapter-card .chapter-name {
             font-family: 'Playfair Display', serif;
             font-weight: 700;
@@ -753,7 +793,6 @@
             line-height: 1.2;
         }
 
-        /* location: pushed to bottom of .chapter-body via flex space-between */
         .chapter-card .chapter-location {
             display: flex;
             align-items: center;
@@ -765,11 +804,6 @@
             margin-top: 0.25rem;
         }
 
-        .chapter-card .chapter-location .map-icon {
-            display: inline-block;
-        }
-
-        /* ── button: at very bottom of card ── */
         .chapter-card .btn-chapter {
             background: var(--hover-bg);
             border: 1px solid var(--border-light);
@@ -784,7 +818,6 @@
             align-items: center;
             gap: 0.5rem;
             margin-top: auto;
-            /* push to bottom */
             flex-shrink: 0;
             align-self: center;
         }
@@ -810,7 +843,6 @@
             transition: 0.2s;
             box-shadow: var(--shadow-sm);
             text-align: left;
-
             display: flex;
             flex-direction: column;
             height: 100%;
@@ -832,7 +864,6 @@
         .testimonial-card blockquote {
             font-style: italic;
             font-size: 0.95rem;
-            line-height: 1.7;
             color: var(--text-body);
             margin-bottom: 1rem;
             flex: 1 1 auto;
@@ -930,7 +961,7 @@
         .footer {
             background-color: var(--bg-body);
             border-top: 1px solid var(--footer-border);
-            padding: 3rem 1.5rem 2rem;
+            padding: 5rem 1.5rem 3rem;
             margin-top: auto;
         }
         .footer-grid {
@@ -1137,7 +1168,6 @@
         .footer-col:first-child p {
             margin-top: 0;
             padding-top: 0.5rem;
-            line-height: 1.8;
             max-width: 280px;
         }
     </style>
@@ -1148,6 +1178,7 @@
     <header class="site-header">
         <div class="nav-container">
             <a href="index.html" class="logo">
+                <i class="fa-solid fa-sailboat logo-icon"></i>
                 <span class="logo-text">Oceanix</span>
             </a>
             <div class="desktop-nav">
@@ -1193,9 +1224,8 @@
             <li><a href="faq.html" class="mobile-link">FAQ</a></li>
             <li><a href="contact.html" class="mobile-link">Contact</a></li>
             <li>
-                <a href="#" class="mobile-link">Dashboard</a>
-                <li><a href="user.html" class="mobile-link">User</a></li>
-                <li><a href="admin.html" class="mobile-link">Admin</a></li>
+                <li><a href="user.html" class="mobile-link">User Dashboard</a></li>
+                <li><a href="admin.html" class="mobile-link">Admin Dashboard</a></li>
             </li>
             <li><a href="signin.html" class="mobile-link">Login</a></li>
         </ul>
@@ -1243,7 +1273,7 @@
                 <div>
                     <span style="font-size:0.75rem; font-weight:600; letter-spacing:2px; color:#00A8CC;">OUR MISSION</span>
                     <h2 class="section-title" style="font-size:2.2rem; margin-top:0.3rem;">Science meets action</h2>
-                    <p style="color:var(--text-muted); line-height:1.7; margin:1.2rem 0;">Oceanix Home 2 is built on data-driven strategies. We combine cutting-edge research with local partnerships to restore marine ecosystems and build resilient coastal communities.</p>
+                    <p style="color:var(--text-muted); margin:1.2rem 0;">Oceanix Home 2 is built on data-driven strategies. We combine cutting-edge research with local partnerships to restore marine ecosystems and build resilient coastal communities.</p>
                     <ul style="list-style:none; margin-top:1.5rem;">
                         <li style="display:flex; gap:0.8rem; margin-bottom:0.8rem;"><i class="fas fa-check-circle" style="color:var(--pool-primary);"></i> AI-driven pollution tracking</li>
                         <li style="display:flex; gap:0.8rem; margin-bottom:0.8rem;"><i class="fas fa-check-circle" style="color:var(--pool-primary);"></i> 100+ restoration projects</li>
@@ -1262,9 +1292,9 @@
             <h2 class="section-title">Innovative Solutions</h2>
             <p class="section-sub">Our core pillars for a healthier ocean – from cleanup to education.</p>
             <div class="grid-3col">
-                <div class="card-service"><i class="fas fa-trash-alt"></i><h4>Plastic Recovery</h4><p style="color:var(--text-muted);">Advanced collection systems remove microplastics and debris from surface waters and coastlines.</p></div>
-                <div class="card-service"><i class="fas fa-seedling"></i><h4>Coral Restoration</h4><p style="color:var(--text-muted);">Active reef rehabilitation using resilient coral nurseries and AI‑powered monitoring.</p></div>
-                <div class="card-service"><i class="fas fa-satellite"></i><h4>Ocean Intelligence</h4><p style="color:var(--text-muted);">Satellite tracking &amp; data analytics to map pollution hotspots and protect marine life.</p></div>
+                <div class="card-service"><i class="fas fa-trash-alt"></i><h4>Plastic Recovery</h4><p>Advanced collection systems remove microplastics and debris from surface waters and coastlines.</p></div>
+                <div class="card-service"><i class="fas fa-seedling"></i><h4>Coral Restoration</h4><p>Active reef rehabilitation using resilient coral nurseries and AI‑powered monitoring.</p></div>
+                <div class="card-service"><i class="fas fa-satellite"></i><h4>Ocean Intelligence</h4><p>Satellite tracking &amp; data analytics to map pollution hotspots and protect marine life.</p></div>
             </div>
         </section>
 
@@ -1296,7 +1326,7 @@
             </div>
         </section>
 
-        <!-- ─── 5. GLOBAL CHAPTERS — FIXED: equal height & bottom-aligned location ─── -->
+        <!-- ─── 5. GLOBAL CHAPTERS ─── -->
         <section class="section">
             <div class="text-center">
                 <h2 class="section-title">SeaKeepers Global Chapters</h2>
@@ -1400,7 +1430,8 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <a href="index.html" class="logo" style="margin-bottom: 1rem; display: inline-flex;">
-                    <span class="logo-text">Oceanix</span>
+                <i class="fa-solid fa-sailboat logo-icon"></i>
+              <span class="logo-text">Oceanix</span>
                 </a>
                 <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Innovative marine conservation &amp; cleanup. Science, technology, and community working for a healthier ocean.</p>
             </div>
