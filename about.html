@@ -1178,12 +1178,12 @@
             position: relative;
             max-width: 780px;
             margin: 1.5rem auto 0;
-            padding: 0 0 0 2rem;
+           padding-left: 1.5rem;
         }
         .timeline-new::before {
             content: '';
             position: absolute;
-            left: 8px;
+            left: 20px;
             top: 0;
             bottom: 0;
             width: 3px;
@@ -1192,46 +1192,17 @@
             opacity: 0.5;
         }
 
-        .timeline-item {
-            position: relative;
-            padding: 0 0 2.5rem 2.8rem;
-            display: flex;
-            flex-direction: column;
-        }
+       .timeline-item {
+    position: relative;
+    padding: 0 0 2.5rem 4rem;
+    display: flex;
+    flex-direction: column;
+}
         .timeline-item:last-child {
             padding-bottom: 0;
         }
 
-        .timeline-marker {
-            position: absolute;
-            left: -4px;
-            top: 2px;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--pool-primary), var(--pool-accent));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-weight: 700;
-            font-size: 1rem;
-            box-shadow: 0 4px 14px rgba(0, 105, 148, 0.3);
-            z-index: 2;
-            transition: all 0.3s ease;
-            border: 2px solid var(--bg-body);
-        }
-        .dark .timeline-marker {
-            border-color: var(--bg-body);
-            box-shadow: 0 4px 14px rgba(0, 105, 148, 0.3);
-        }
-        .timeline-item:hover .timeline-marker {
-            transform: scale(1.10);
-            box-shadow: 0 8px 24px rgba(0, 105, 148, 0.45);
-        }
-        .dark .timeline-item:hover .timeline-marker {
-            box-shadow: 0 8px 24px rgba(0, 105, 148, 0.5);
-        }
+
 
         .timeline-content {
             background: var(--card-bg);
@@ -1277,20 +1248,21 @@
             margin: 0;
         }
 
-        @media (max-width: 600px) {
-            .timeline-new {
-                padding: 0 0 0 1.2rem;
-            }
-            .timeline-item {
-                padding: 0 0 2rem 2rem;
-            }
-            .timeline-marker {
-                width: 36px;
-                height: 36px;
-                font-size: 0.8rem;
-                left: -2px;
-                top: 0px;
-            }
+      .timeline-new {
+    padding-left: 1rem;
+}
+
+.timeline-new::before {
+    left: 16px;
+}
+
+.timeline-item {
+    padding: 0 0 2rem 3rem;
+}
+
+.timeline-marker {
+    left: 0;
+}
             .timeline-content {
                 padding: 1rem 1.2rem;
             }
@@ -1311,7 +1283,7 @@
             .approach-card {
                 min-height: 280px;
             }
-        }
+        
 
         /* impact stats grid */
         .impact-stats-grid {
@@ -1484,7 +1456,6 @@
                 <p class="section-sub">From a single boat to a global movement — every milestone brings us closer to a thriving ocean.</p>
                 <div class="timeline-new">
                     <div class="timeline-item">
-                        <div class="timeline-marker"><span>1</span></div>
                         <div class="timeline-content">
                             <span class="tl-year"><i class="far fa-calendar-alt"></i> 2020</span>
                             <h4>First Voyage</h4>
@@ -1492,7 +1463,6 @@
                         </div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-marker"><span>2</span></div>
                         <div class="timeline-content">
                             <span class="tl-year"><i class="far fa-calendar-alt"></i> 2021</span>
                             <h4>Global Network</h4>
@@ -1500,7 +1470,6 @@
                         </div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-marker"><span>3</span></div>
                         <div class="timeline-content">
                             <span class="tl-year"><i class="far fa-calendar-alt"></i> 2022</span>
                             <h4>Tech Hub</h4>
@@ -1508,7 +1477,6 @@
                         </div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-marker"><span>4</span></div>
                         <div class="timeline-content">
                             <span class="tl-year"><i class="far fa-calendar-alt"></i> 2023</span>
                             <h4>Reef Revival</h4>
@@ -1516,7 +1484,6 @@
                         </div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-marker"><span>5</span></div>
                         <div class="timeline-content">
                             <span class="tl-year"><i class="far fa-calendar-alt"></i> 2025</span>
                             <h4>Million‑Mangrove Pledge</h4>

@@ -385,14 +385,17 @@
         /* ─── SECTION SHARED ─── */
         .section {
             padding: 5rem 1.5rem;
-            max-width: 1280px;
-            margin: 0 auto;
             width: 100%;
         }
         .section-alt {
             background-color: var(--section-alt-bg);
             border-top: 1px solid var(--border-light);
             border-bottom: 1px solid var(--border-light);
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            width: 100%;
         }
 
         /* ─── SECTION HEADINGS — all use #00A8CC ─── */
@@ -1269,141 +1272,150 @@
 
         <!-- ─── 2. MISSION ─── -->
         <section class="section section-alt">
-            <div class="grid-2col">
-                <div>
-                    <span style="font-size:0.75rem; font-weight:600; letter-spacing:2px; color:#00A8CC;">OUR MISSION</span>
-                    <h2 class="section-title" style="font-size:2.2rem; margin-top:0.3rem;">Science meets action</h2>
-                    <p style="color:var(--text-muted); margin:1.2rem 0;">Oceanix Home 2 is built on data-driven strategies. We combine cutting-edge research with local partnerships to restore marine ecosystems and build resilient coastal communities.</p>
-                    <ul style="list-style:none; margin-top:1.5rem;">
-                        <li style="display:flex; gap:0.8rem; margin-bottom:0.8rem;"><i class="fas fa-check-circle" style="color:var(--pool-primary);"></i> AI-driven pollution tracking</li>
-                        <li style="display:flex; gap:0.8rem; margin-bottom:0.8rem;"><i class="fas fa-check-circle" style="color:var(--pool-primary);"></i> 100+ restoration projects</li>
-                        <li style="display:flex; gap:0.8rem; margin-bottom:0.8rem;"><i class="fas fa-check-circle" style="color:var(--pool-primary);"></i> Open data for global impact</li>
-                    </ul>
-                    <a href="#" class="btn-primary" style="margin-top:1rem;">Explore our work</a>
-                </div>
-                <div class="img-placeholder">
-                    <img src="image/ocean (5).jpg" alt="Science meets action — ocean research" />
+            <div class="container">
+                <div class="grid-2col">
+                    <div>
+                        <h2 class="section-title" style="font-size:2.2rem; margin-top:0.3rem;">Science meets action</h2>
+                        <p style="color:var(--text-muted); margin:1.2rem 0;">Oceanix Home 2 is built on data-driven strategies. We combine cutting-edge research with local partnerships to restore marine ecosystems and build resilient coastal communities.</p>
+                        <ul style="list-style:none; margin-top:1.5rem;">
+                            <li style="display:flex; gap:0.8rem; margin-bottom:0.8rem;"><i class="fas fa-check-circle" style="color:var(--pool-primary);"></i> AI-driven pollution tracking</li>
+                            <li style="display:flex; gap:0.8rem; margin-bottom:0.8rem;"><i class="fas fa-check-circle" style="color:var(--pool-primary);"></i> 100+ restoration projects</li>
+                            <li style="display:flex; gap:0.8rem; margin-bottom:0.8rem;"><i class="fas fa-check-circle" style="color:var(--pool-primary);"></i> Open data for global impact</li>
+                        </ul>
+                        <a href="#" class="btn-primary" style="margin-top:1rem;">Explore our work</a>
+                    </div>
+                    <div class="img-placeholder">
+                        <img src="image/ocean (5).jpg" alt="Science meets action — ocean research" />
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- ─── 3. SERVICES ─── -->
         <section class="section text-center">
-            <h2 class="section-title">Innovative Solutions</h2>
-            <p class="section-sub">Our core pillars for a healthier ocean – from cleanup to education.</p>
-            <div class="grid-3col">
-                <div class="card-service"><i class="fas fa-trash-alt"></i><h4>Plastic Recovery</h4><p>Advanced collection systems remove microplastics and debris from surface waters and coastlines.</p></div>
-                <div class="card-service"><i class="fas fa-seedling"></i><h4>Coral Restoration</h4><p>Active reef rehabilitation using resilient coral nurseries and AI‑powered monitoring.</p></div>
-                <div class="card-service"><i class="fas fa-satellite"></i><h4>Ocean Intelligence</h4><p>Satellite tracking &amp; data analytics to map pollution hotspots and protect marine life.</p></div>
+            <div class="container">
+                <h2 class="section-title">Innovative Solutions</h2>
+                <p class="section-sub">Our core pillars for a healthier ocean – from cleanup to education.</p>
+                <div class="grid-3col">
+                    <div class="card-service"><i class="fas fa-trash-alt"></i><h4>Plastic Recovery</h4><p>Advanced collection systems remove microplastics and debris from surface waters and coastlines.</p></div>
+                    <div class="card-service"><i class="fas fa-seedling"></i><h4>Coral Restoration</h4><p>Active reef rehabilitation using resilient coral nurseries and AI‑powered monitoring.</p></div>
+                    <div class="card-service"><i class="fas fa-satellite"></i><h4>Ocean Intelligence</h4><p>Satellite tracking &amp; data analytics to map pollution hotspots and protect marine life.</p></div>
+                </div>
             </div>
         </section>
 
         <!-- ─── 4. SUCCESS STORIES ─── -->
         <section class="section section-alt">
-            <div class="text-center">
-                <h2 class="section-title">Success Stories</h2>
-                <p class="section-sub">Real impact from our projects around the world.</p>
-            </div>
-            <div class="stories-grid">
-                <div class="story-card">
-                    <div class="story-img"><img src="image/card (2).jpg" alt="Coral restoration" /></div>
-                    <span class="story-tag"><i class="fas fa-coral"></i> Restoration</span>
-                    <h4>Reviving the Great Barrier Reef</h4>
-                    <p>Using heat‑resistant coral strains, we restored over 12 hectares of degraded reef in just 18 months.</p>
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-title">Success Stories</h2>
+                    <p class="section-sub">Real impact from our projects around the world.</p>
                 </div>
-                <div class="story-card">
-                    <div class="story-img"><img src="image/card (1).jpg" alt="Plastic cleanup" /></div>
-                    <span class="story-tag"><i class="fas fa-trash-alt"></i> Cleanup</span>
-                    <h4>Turning the Tide on Plastic</h4>
-                    <p>A community‑led initiative in Indonesia removed 280 tonnes of ocean plastic and created 50 local jobs.</p>
-                </div>
-                <div class="story-card">
-                    <div class="story-img"><img src="image/ocean animal (8).jpg" alt="Mangrove planting" /></div>
-                    <span class="story-tag"><i class="fas fa-tree"></i> Blue Carbon</span>
-                    <h4>Mangrove Forests of Tomorrow</h4>
-                    <p>Partnering with coastal communities to plant 200,000 mangroves, protecting shorelines and capturing carbon.</p>
+                <div class="stories-grid">
+                    <div class="story-card">
+                        <div class="story-img"><img src="image/card (2).jpg" alt="Coral restoration" /></div>
+                        <span class="story-tag"><i class="fas fa-coral"></i> Restoration</span>
+                        <h4>Reviving the Great Barrier Reef</h4>
+                        <p>Using heat‑resistant coral strains, we restored over 12 hectares of degraded reef in just 18 months.</p>
+                    </div>
+                    <div class="story-card">
+                        <div class="story-img"><img src="image/card (1).jpg" alt="Plastic cleanup" /></div>
+                        <span class="story-tag"><i class="fas fa-trash-alt"></i> Cleanup</span>
+                        <h4>Turning the Tide on Plastic</h4>
+                        <p>A community‑led initiative in Indonesia removed 280 tonnes of ocean plastic and created 50 local jobs.</p>
+                    </div>
+                    <div class="story-card">
+                        <div class="story-img"><img src="image/ocean animal (8).jpg" alt="Mangrove planting" /></div>
+                        <span class="story-tag"><i class="fas fa-tree"></i> Blue Carbon</span>
+                        <h4>Mangrove Forests of Tomorrow</h4>
+                        <p>Partnering with coastal communities to plant 200,000 mangroves, protecting shorelines and capturing carbon.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- ─── 5. GLOBAL CHAPTERS ─── -->
         <section class="section">
-            <div class="text-center">
-                <h2 class="section-title">SeaKeepers Global Chapters</h2>
-                <p class="section-sub">Providing access to the world's oceans across four key regions.</p>
-            </div>
-            <div class="chapters-grid">
-                <!-- USA -->
-                <div class="chapter-card">
-                    <div class="chapter-img"><img src="image/seekeper (1).jpg" alt="USA coastline" /></div>
-                    <div class="chapter-body">
-                        <div class="chapter-name">SeaKeepers USA</div>
-                        <div class="chapter-location"><i class="fas fa-map-pin"></i> North America <span class="map-icon"><i class="fas fa-map-marked-alt"></i></span></div>
-                    </div>
-                    <a href="#" class="btn-chapter">VISIT <i class="fas fa-arrow-right"></i></a>
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-title">SeaKeepers Global Chapters</h2>
+                    <p class="section-sub">Providing access to the world's oceans across four key regions.</p>
                 </div>
-                <!-- Asia -->
-                <div class="chapter-card">
-                    <div class="chapter-img"><img src="image/seekeper (2).jpg" alt="Asia coastline" /></div>
-                    <div class="chapter-body">
-                        <div class="chapter-name">SeaKeepers Asia</div>
-                        <div class="chapter-location"><i class="fas fa-map-pin"></i> Asia-Pacific <span class="map-icon"><i class="fas fa-map-marked-alt"></i></span></div>
+                <div class="chapters-grid">
+                    <!-- USA -->
+                    <div class="chapter-card">
+                        <div class="chapter-img"><img src="image/seekeper (1).jpg" alt="USA coastline" /></div>
+                        <div class="chapter-body">
+                            <div class="chapter-name">SeaKeepers USA</div>
+                            <div class="chapter-location"><i class="fas fa-map-pin"></i> North America <span class="map-icon"><i class="fas fa-map-marked-alt"></i></span></div>
+                        </div>
+                        <a href="#" class="btn-chapter">VISIT <i class="fas fa-arrow-right"></i></a>
                     </div>
-                    <a href="#" class="btn-chapter">VISIT <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <!-- UK -->
-                <div class="chapter-card">
-                    <div class="chapter-img"><img src="image/seekeper (3).jpg" alt="UK coast" /></div>
-                    <div class="chapter-body">
-                        <div class="chapter-name">SeaKeepers UK</div>
-                        <div class="chapter-location"><i class="fas fa-map-pin"></i> United Kingdom <span class="map-icon"><i class="fas fa-map-marked-alt"></i></span></div>
+                    <!-- Asia -->
+                    <div class="chapter-card">
+                        <div class="chapter-img"><img src="image/seekeper (2).jpg" alt="Asia coastline" /></div>
+                        <div class="chapter-body">
+                            <div class="chapter-name">SeaKeepers Asia</div>
+                            <div class="chapter-location"><i class="fas fa-map-pin"></i> Asia-Pacific <span class="map-icon"><i class="fas fa-map-marked-alt"></i></span></div>
+                        </div>
+                        <a href="#" class="btn-chapter">VISIT <i class="fas fa-arrow-right"></i></a>
                     </div>
-                    <a href="#" class="btn-chapter">VISIT <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <!-- South Pacific -->
-                <div class="chapter-card">
-                    <div class="chapter-img"><img src="image/seakeeper5.jpg" alt="South Pacific beach" /></div>
-                    <div class="chapter-body">
-                        <div class="chapter-name">SeaKeepers South Pacific</div>
-                        <div class="chapter-location"><i class="fas fa-map-pin"></i> South Pacific <span class="map-icon"><i class="fas fa-map-marked-alt"></i></span></div>
+                    <!-- UK -->
+                    <div class="chapter-card">
+                        <div class="chapter-img"><img src="image/seekeper (3).jpg" alt="UK coast" /></div>
+                        <div class="chapter-body">
+                            <div class="chapter-name">SeaKeepers UK</div>
+                            <div class="chapter-location"><i class="fas fa-map-pin"></i> United Kingdom <span class="map-icon"><i class="fas fa-map-marked-alt"></i></span></div>
+                        </div>
+                        <a href="#" class="btn-chapter">VISIT <i class="fas fa-arrow-right"></i></a>
                     </div>
-                    <a href="#" class="btn-chapter">VISIT <i class="fas fa-arrow-right"></i></a>
+                    <!-- South Pacific -->
+                    <div class="chapter-card">
+                        <div class="chapter-img"><img src="image/seakeeper5.jpg" alt="South Pacific beach" /></div>
+                        <div class="chapter-body">
+                            <div class="chapter-name">SeaKeepers South Pacific</div>
+                            <div class="chapter-location"><i class="fas fa-map-pin"></i> South Pacific <span class="map-icon"><i class="fas fa-map-marked-alt"></i></span></div>
+                        </div>
+                        <a href="#" class="btn-chapter">VISIT <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </div>
-            </div>
-            <div class="text-center mt-2">
-                <a href="#" class="btn-primary"><i class="fas fa-globe-americas"></i> View all chapters</a>
+                <div class="text-center mt-2">
+                    <a href="#" class="btn-primary"><i class="fas fa-globe-americas"></i> View all chapters</a>
+                </div>
             </div>
         </section>
 
         <!-- ─── 6. TESTIMONIALS ─── -->
         <section class="section section-alt">
-            <div class="text-center">
-                <h2 class="section-title">What our community says</h2>
-                <p class="section-sub">Voices from volunteers, scientists, and partners who make our work possible.</p>
-            </div>
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <blockquote>“Oceanix transformed our coastal village. The cleanup programs and education have given us hope for the future of our seas.”</blockquote>
-                    <div class="t-author">
-                        <div class="avatar"><img src="image/author (1).jpg" alt="Avatar" /></div>
-                        <div><div class="t-name">Maria Santos</div><div class="t-role">Community Leader, Philippines</div></div>
-                    </div>
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-title">What our community says</h2>
+                    <p class="section-sub">Voices from volunteers, scientists, and partners who make our work possible.</p>
                 </div>
-                <div class="testimonial-card">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <blockquote>“The coral restoration techniques developed here are world‑class. I've seen reefs come back to life in ways I never thought possible.”</blockquote>
-                    <div class="t-author">
-                        <div class="avatar"><img src="image/author (2).jpg" alt="Avatar" /></div>
-                        <div><div class="t-name">Dr. James Carter</div><div class="t-role">Marine Biologist, Australia</div></div>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <blockquote>“Oceanix transformed our coastal village. The cleanup programs and education have given us hope for the future of our seas.”</blockquote>
+                        <div class="t-author">
+                            <div class="avatar"><img src="image/author (1).jpg" alt="Avatar" /></div>
+                            <div><div class="t-name">Maria Santos</div><div class="t-role">Community Leader, Philippines</div></div>
+                        </div>
                     </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <blockquote>“Volunteering with Oceanix gave me purpose. Seeing the impact of our work on the ocean and local communities is incredibly rewarding.”</blockquote>
-                    <div class="t-author">
-                        <div class="avatar"><img src="image/author (3).jpg" alt="Avatar" /></div>
-                        <div><div class="t-name">Sarah Kim</div><div class="t-role">Volunteer, South Korea</div></div>
+                    <div class="testimonial-card">
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <blockquote>“The coral restoration techniques developed here are world‑class. I've seen reefs come back to life in ways I never thought possible.”</blockquote>
+                        <div class="t-author">
+                            <div class="avatar"><img src="image/author (2).jpg" alt="Avatar" /></div>
+                            <div><div class="t-name">Dr. James Carter</div><div class="t-role">Marine Biologist, Australia</div></div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <blockquote>“Volunteering with Oceanix gave me purpose. Seeing the impact of our work on the ocean and local communities is incredibly rewarding.”</blockquote>
+                        <div class="t-author">
+                            <div class="avatar"><img src="image/author (3).jpg" alt="Avatar" /></div>
+                            <div><div class="t-name">Sarah Kim</div><div class="t-role">Volunteer, South Korea</div></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1411,15 +1423,17 @@
 
         <!-- ─── 7. NEWSLETTER / CTA ─── -->
         <section class="section" style="padding-bottom:3rem;">
-            <div class="newsletter-box">
-                <i class="fas fa-envelope-open-text" style="font-size:2.8rem; color:var(--pool-primary); margin-bottom:0.5rem; display:inline-block;"></i>
-                <h2>Stay connected with the tide</h2>
-                <p>Subscribe to our newsletter for monthly updates, success stories, and ways you can help protect our oceans.</p>
-                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
-                    <input type="email" placeholder="Enter your email address" required />
-                    <button type="submit" class="btn-primary"><i class="fas fa-paper-plane"></i> Subscribe</button>
-                </form>
-                <p style="font-size:0.75rem; margin-top:1.2rem; opacity:0.7;">We respect your privacy. Unsubscribe at any time.</p>
+            <div class="container">
+                <div class="newsletter-box">
+                    <i class="fas fa-envelope-open-text" style="font-size:2.8rem; color:var(--pool-primary); margin-bottom:0.5rem; display:inline-block;"></i>
+                    <h2>Stay connected with the tide</h2>
+                    <p>Subscribe to our newsletter for monthly updates, success stories, and ways you can help protect our oceans.</p>
+                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+                        <input type="email" placeholder="Enter your email address" required />
+                        <button type="submit" class="btn-primary"><i class="fas fa-paper-plane"></i> Subscribe</button>
+                    </form>
+                    <p style="font-size:0.75rem; margin-top:1.2rem; opacity:0.7;">We respect your privacy. Unsubscribe at any time.</p>
+                </div>
             </div>
         </section>
 
